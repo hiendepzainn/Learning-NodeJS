@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/abc", (req, res) => {
-  res.send("Hello Dinh Xuan Hien!");
+  res.send("Hello Dinh Xuan Hien dep zai!");
 });
 
 app.listen(PORT, () => {
