@@ -4,8 +4,11 @@ const app = express();
 
 const PORT = process.env.PORT || 8888;
 
+app.set("views", __dirname + "/views");
+app.set("view engine", "ejs");
+
 app.get("/", (req, res) => {
-  res.send("Hello World update!");
+  res.render("index.ejs");
 });
 
 app.get("/abc", (req, res) => {
@@ -14,5 +17,5 @@ app.get("/abc", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`This app is running at port: ${PORT}`);
-  console.log("My env: ", process.env.PORT);
+  console.log("URL view engine:", __dirname + "/views");
 });
