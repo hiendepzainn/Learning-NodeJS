@@ -1,11 +1,14 @@
 import { Express } from "express";
+import {
+  getCreateUserPage,
+  getHomePage,
+  postCreateUser,
+} from "../controllers/user.controller";
 
 export const initRouters = (app: Express) => {
-  app.get("/", (req, res) => {
-    res.render("index.ejs");
-  });
+  app.get("/", getHomePage);
 
-  app.get("/abc", (req, res) => {
-    res.send("Hello Dinh Xuan Hien dep zai!");
-  });
+  app.get("/create-user", getCreateUserPage);
+
+  app.post("/handle-create-user", postCreateUser);
 };
