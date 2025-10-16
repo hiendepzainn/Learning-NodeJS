@@ -1,5 +1,6 @@
 import express from "express";
 import "dotenv/config";
+import { initRouters } from "./routes/web";
 const app = express();
 
 const PORT = process.env.PORT || 8888;
@@ -7,13 +8,11 @@ const PORT = process.env.PORT || 8888;
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  res.render("index.ejs");
-});
+//config routers
+initRouters(app);
 
-app.get("/abc", (req, res) => {
-  res.send("Hello Dinh Xuan Hien dep zai!");
-});
+//config static files
+app.use(express.static("public"));
 
 app.listen(PORT, () => {
   console.log(`This app is running at port: ${PORT}`);
