@@ -15,7 +15,7 @@ const handleCreateUser = async (
     );
     console.log("Insert a new User...");
   } catch {
-    console.log("error:", error);
+    console.log("error: ", error);
   }
 };
 
