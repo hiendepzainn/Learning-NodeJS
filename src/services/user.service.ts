@@ -10,9 +10,19 @@ const handleCreateUser = async (
   const myConnection = await getConnection();
 
   try {
-    await myConnection.query(
-      `INSERT INTO users (name, email, address) VALUES ( "${fullName}", "${email}", "${address}");`
-    );
+    // await myConnection.query(
+    //   `INSERT INTO users (name, email, address) VALUES ('${fullName}', '${email}', '${address}');`
+    // );
+
+    const sql =
+      "INSERT INTO `users`(`name`, `email`, `address`) VALUES (?, ?, ?)";
+    const values = [fullName, email, address];
+
+    const [result, fields] = await myConnection.execute(sql, values);
+
+    console.log(result);
+    console.log(fields);
+
     console.log("Insert a new User...");
   } catch {
     console.log("error: ", error);
