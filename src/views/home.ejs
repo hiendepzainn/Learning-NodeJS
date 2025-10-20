@@ -38,9 +38,14 @@
             <td><%=item.email%></td>
             <td><%=item.address%></td>
             <td>
-              <form action="/handle-delete-user/<%=item.id%>" method="post">
-                <button class="btn btn-danger">Delete</button>
-              </form>
+              <div style="display: flex; gap: 10px">
+                <form action="/handle-view-user/<%=item.id%>" method="get">
+                  <button class="btn btn-warning">View</button>
+                </form>
+                <form action="/handle-delete-user/<%=item.id%>" method="post">
+                  <button class="btn btn-danger">Delete</button>
+                </form>
+              </div>
             </td>
           </tr>
           <% }); %>

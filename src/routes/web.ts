@@ -2,8 +2,10 @@ import { Express } from "express";
 import {
   getCreateUserPage,
   getHomePage,
+  getViewUser,
   postCreateUser,
   postDeleteUser,
+  postUpdateUser,
 } from "../controllers/user.controller";
 
 export const initRouters = (app: Express) => {
@@ -14,4 +16,8 @@ export const initRouters = (app: Express) => {
   app.post("/handle-create-user", postCreateUser);
 
   app.post("/handle-delete-user/:id", postDeleteUser);
+
+  app.get("/handle-view-user/:id", getViewUser);
+
+  app.post("/handle-update-user/:id", postUpdateUser);
 };

@@ -51,4 +51,41 @@ const handleDeleteUser = async (id: number) => {
   }
 };
 
-export { handleCreateUser, getAllUsers, handleDeleteUser };
+const getUserByID = async (id: number) => {
+  const myConnection = await getConnection();
+
+  try {
+    const sql = "SELECT * FROM `users` WHERE `id` = ?";
+    const values = [id];
+
+    const [result, fields] = await myConnection.execute(sql, values);
+    return result[0];
+  } catch {
+    console.log("ERROR:", error);
+  }
+};
+const handleUpdateUser = async (
+  id: number,
+  name: string,
+  email: string,
+  address: string
+) => {
+  try {
+    const myConnection = await getConnection();
+    const sql =
+      "UPDATE `users` SET `name` = ?, `email` = ?, `address` = ?  WHERE `id` = ? LIMIT 1";
+    const values = [name, email, address, id];
+
+    const [result, fields] = await myConnection.execute(sql, values);
+  } catch {
+    console.log("ERROR:", error);
+  }
+};
+
+export {
+  handleCreateUser,
+  getAllUsers,
+  handleDeleteUser,
+  getUserByID,
+  handleUpdateUser,
+};

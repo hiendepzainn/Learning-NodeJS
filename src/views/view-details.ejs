@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create new User</title>
+    <title>View User</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -13,26 +13,42 @@
   </head>
   <body>
     <div style="width: 45%; margin: auto">
-      <h2>Create a new User</h2>
+      <h2>Infor user <%=user.id%></h2>
 
-      <form action="/handle-create-user" method="post">
+      <form action="/handle-update-user/<%=user.id%>" method="post">
         <div class="mb-3">
           <label class="form-label">Name</label>
-          <input name="fullName" type="text" class="form-control" />
+          <input
+            value="<%=user.name%>"
+            name="fullName"
+            type="text"
+            class="form-control"
+          />
         </div>
 
         <div class="mb-3">
           <label class="form-label">Email</label>
-          <input name="email" type="email" class="form-control" />
+          <input
+            value="<%=user.email%>"
+            name="email"
+            type="email"
+            class="form-control"
+          />
         </div>
 
         <div class="mb-3">
           <label class="form-label">Address</label>
-          <input name="address" type="text" class="form-control" />
+          <input
+            value="<%=user.address%>"
+            name="address"
+            type="text"
+            class="form-control"
+          />
         </div>
 
         <div class="mb-3">
-          <button type="submit" class="btn btn-warning">Submit</button>
+          <a href="/" class="btn btn-primary">Back</a>
+          <button type="submit" class="btn btn-warning">Update</button>
         </div>
       </form>
     </div>
