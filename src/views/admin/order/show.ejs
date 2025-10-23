@@ -9,7 +9,7 @@
     />
     <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
     <meta name="author" content="Hỏi Dân IT" />
-    <title>User Management</title>
+    <title>Order Management</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
       rel="stylesheet"
@@ -26,54 +26,7 @@
     <div id="layoutSidenav">
       <%- include('../layout/sidenav.ejs'); %>
       <div id="layoutSidenav_content">
-        <div
-          style="display: flex; justify-content: space-between; padding: 20px"
-        >
-          <h1>Manage User</h1>
-          <div>
-            <a class="btn btn-warning" href="/admin/create-user"
-              >Create a new User</a
-            >
-          </div>
-        </div>
-
-        <div style="padding: 15px">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Address</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% listUsers.forEach(function(item) { %>
-              <tr>
-                <th scope="row"><%=item.id%></th>
-                <td><%=item.fullName%></td>
-                <td><%=item.username%></td>
-                <td><%=item.address%></td>
-                <td>
-                  <div style="display: flex; gap: 10px">
-                    <form action="/handle-view-user/<%=item.id%>" method="get">
-                      <button class="btn btn-warning">View</button>
-                    </form>
-                    <form
-                      action="/handle-delete-user/<%=item.id%>"
-                      method="post"
-                    >
-                      <button class="btn btn-danger">Delete</button>
-                    </form>
-                  </div>
-                </td>
-              </tr>
-              <% }); %>
-            </tbody>
-          </table>
-        </div>
-
+        <div>Write code in here...</div>
         <%- include('../layout/footer.ejs'); %>
       </div>
     </div>

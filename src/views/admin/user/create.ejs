@@ -26,52 +26,29 @@
     <div id="layoutSidenav">
       <%- include('../layout/sidenav.ejs'); %>
       <div id="layoutSidenav_content">
-        <div
-          style="display: flex; justify-content: space-between; padding: 20px"
-        >
-          <h1>Manage User</h1>
-          <div>
-            <a class="btn btn-warning" href="/admin/create-user"
-              >Create a new User</a
-            >
-          </div>
-        </div>
+        <div style="width: 45%; margin: auto">
+          <h2>Create a new User</h2>
 
-        <div style="padding: 15px">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Address</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% listUsers.forEach(function(item) { %>
-              <tr>
-                <th scope="row"><%=item.id%></th>
-                <td><%=item.fullName%></td>
-                <td><%=item.username%></td>
-                <td><%=item.address%></td>
-                <td>
-                  <div style="display: flex; gap: 10px">
-                    <form action="/handle-view-user/<%=item.id%>" method="get">
-                      <button class="btn btn-warning">View</button>
-                    </form>
-                    <form
-                      action="/handle-delete-user/<%=item.id%>"
-                      method="post"
-                    >
-                      <button class="btn btn-danger">Delete</button>
-                    </form>
-                  </div>
-                </td>
-              </tr>
-              <% }); %>
-            </tbody>
-          </table>
+          <form action="/handle-create-user" method="post">
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input name="fullName" type="text" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input name="email" type="email" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Address</label>
+              <input name="address" type="text" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+              <button type="submit" class="btn btn-warning">Submit</button>
+            </div>
+          </form>
         </div>
 
         <%- include('../layout/footer.ejs'); %>
