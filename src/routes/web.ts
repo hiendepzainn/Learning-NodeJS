@@ -7,7 +7,10 @@ import {
   postDeleteUser,
   postUpdateUser,
 } from "../controllers/user.controller";
-import { getDashboardPage } from "../controllers/admin/dashboard.controller";
+import {
+  getDashboardPage,
+  getUserPage,
+} from "../controllers/admin/dashboard.controller";
 
 export const initRouters = (app: Express) => {
   app.get("/", getHomePage);
@@ -19,4 +22,5 @@ export const initRouters = (app: Express) => {
 
   // ADMIN
   app.get("/admin", getDashboardPage);
+  app.get("/admin/user", getUserPage);
 };
