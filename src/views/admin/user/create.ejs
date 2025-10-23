@@ -31,13 +31,34 @@
 
           <form action="/handle-create-user" method="post">
             <div class="mb-3">
-              <label class="form-label">Name</label>
+              <label class="form-label">Full name</label>
               <input name="fullName" type="text" class="form-control" />
             </div>
 
             <div class="mb-3">
               <label class="form-label">Email</label>
-              <input name="email" type="email" class="form-control" />
+              <input name="username" type="email" class="form-control" />
+            </div>
+
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label">Phone</label>
+                <input name="phone" type="number" class="form-control" />
+              </div>
+
+              <div class="col-6 mb-3">
+                <label class="form-label">Role</label
+                ><select class="form-select">
+                  <% listRoles.forEach((role) => { %>
+                  <option value="<%-role.id %>"><%- role.name %></option>
+                  <%})%>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Avatar</label>
+              <input class="form-control" type="file" />
             </div>
 
             <div class="mb-3">
