@@ -13,9 +13,7 @@ import {
   getProductPage,
   getUserPage,
 } from "../controllers/admin/dashboard.controller";
-
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+import fileUploadMiddleware from "../middleware/multer";
 
 export const initRouters = (app: Express) => {
   app.get("/", getHomePage);
@@ -30,13 +28,8 @@ export const initRouters = (app: Express) => {
   app.get("/admin/create-user", getCreateUserPage);
   app.post(
     "/admin/handle-create-user",
-    upload.single("avatar"),
-    // postCreateUser
-    (req, res) => {
-      console.log(req.file);
-      console.log(req.body);
-      res.send("ok");
-    }
+    fileUploadMiddleware("avatar"),
+    postCreateUser
   );
   app.get("/admin/order", getOrderPage);
   app.get("/admin/product", getProductPage);
