@@ -40,7 +40,11 @@
         <div style="width: 45%; margin: auto">
           <h2>Create a new User</h2>
 
-          <form action="/handle-create-user" method="post">
+          <form
+            action="/admin/handle-create-user"
+            method="post"
+            enctype="multipart/form-data"
+          >
             <div class="mb-3">
               <label class="form-label">Full name</label>
               <input name="fullName" type="text" class="form-control" />
@@ -59,7 +63,7 @@
 
               <div class="col-6 mb-3">
                 <label class="form-label">Role</label
-                ><select class="form-select">
+                ><select name="role" class="form-select">
                   <% listRoles.forEach((role) => { %>
                   <option value="<%-role.id %>"><%- role.name %></option>
                   <%})%>
@@ -70,6 +74,7 @@
             <div class="mb-3">
               <label class="form-label">Avatar</label>
               <input
+                name="avatar"
                 class="form-control"
                 type="file"
                 id="avatarFile"
