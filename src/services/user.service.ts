@@ -2,10 +2,14 @@ import { error } from "console";
 import getConnection from "../config/database";
 import { PrismaClient } from "@prisma/client";
 import { prisma } from "../config/client";
+import { ACCOUNT_TYPE } from "../config/constant";
 
 const handleCreateUser = async (
   fullName: string,
-  email: string,
+  username: string,
+  phone: string,
+  role: string,
+  avatar: string,
   address: string
 ) => {
   //insert to DB
@@ -13,12 +17,12 @@ const handleCreateUser = async (
   await prisma.user.create({
     data: {
       fullName: fullName,
-      username: email,
+      username: username,
+      phone: phone,
       address: address,
-      password: "",
-      accountType: "",
-      avatar: "",
-      phone: "",
+      password: "12234567",
+      accountType: ACCOUNT_TYPE.SYSTEM,
+      avatar: avatar,
     },
   });
 };
