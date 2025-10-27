@@ -4,6 +4,13 @@ import { PrismaClient } from "@prisma/client";
 import { prisma } from "../config/client";
 import { ACCOUNT_TYPE } from "../config/constant";
 
+import bcrypt from "bcrypt";
+const saltRounds = 10;
+
+export const hashPassword = async (password: string) => {
+  return await bcrypt.hash(password, saltRounds);
+};
+
 const handleCreateUser = async (
   fullName: string,
   username: string,
@@ -20,7 +27,7 @@ const handleCreateUser = async (
       username: username,
       phone: phone,
       address: address,
-      password: "12234567",
+      password: await hashPassword("12234567"),
       accountType: ACCOUNT_TYPE.SYSTEM,
       avatar: avatar,
     },
