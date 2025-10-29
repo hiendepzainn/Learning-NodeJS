@@ -1,17 +1,17 @@
 Xử lý ràng buộc phần RoleID trong User & ID trong Role:
 
-1. Viết thêm vào file schema.prisma để ràng buộc (User & Role)
-2. Thử sang nghịch gợi ý Object của User: ko thấy gợi ý code RoleID
---> 3. Generate lại Prisma để gợi í code schema.prisma mới nhất (cancel trước khi generate):
+1. -----Viết thêm vào file schema.prisma để ràng buộc (User & Role)
+2. -----Thử sang nghịch gợi ý Object của User: ko thấy gợi ý code RoleID
+--> 3. -----Generate lại Prisma để gợi í code schema.prisma mới nhất (cancel trước khi generate):
 TERMINAL: //npx prisma generate
 (Chưa đồng bộ RoleID Prisma vs MySQL)
-4. Sửa lại code MVC để hoạt động với trường RoleID
-5. Xem lại đoạn Seed data của Role & User
-6. Chạy thử app lên --> RoleID chưa có --> Chưa chạy code schema.prisma để đồng bộ MySQL
+4. -----Sửa lại code MVC để hoạt động với trường RoleID
+5. -----Xem lại đoạn Seed data của Role & User
+6. -----Chạy thử app lên --> RoleID chưa có --> Chưa chạy code schema.prisma để đồng bộ MySQL
 TERMINAL: //2 câu lệnh trong tài liệu
 (xem câu lệnh migrate trong video này có khác vs câu lệnh migrate trong video trước ko)
-7. Xem lại vụ lỗi migrate vì chưa có Default value của RoleID
+7. -----Xem lại vụ lỗi migrate vì chưa có Default value của RoleID
 --> fix: xóa hết data cũ mà RoleID đang ko có value -> chạy lại migrate
 (mất data của table Role luôn)
---> 8. Chạy lại npm start để seed
+--> 8. -----Chạy lại npm start để seed
 (xem có bị lỗi ko seed được data của bảng User như HoidanIT ko)

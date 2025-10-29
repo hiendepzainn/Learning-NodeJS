@@ -12,12 +12,14 @@ const initDatabase = async () => {
           username: "hien@gmail.com",
           password: await hashPassword("123456"),
           accountType: ACCOUNT_TYPE.SYSTEM,
+          roleID: 1,
         },
         {
           fullName: "ADMIN",
           username: "admin@gmail.com",
           password: await hashPassword("123456"),
           accountType: ACCOUNT_TYPE.SYSTEM,
+          roleID: 1,
         },
       ],
     });

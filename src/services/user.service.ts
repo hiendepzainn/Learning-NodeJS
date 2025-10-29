@@ -30,6 +30,7 @@ const handleCreateUser = async (
       password: await hashPassword("12234567"),
       accountType: ACCOUNT_TYPE.SYSTEM,
       avatar: avatar,
+      roleID: +role,
     },
   });
 };
