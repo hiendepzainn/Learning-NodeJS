@@ -18,9 +18,6 @@ import fileUploadMiddleware from "../middleware/multer";
 export const initRouters = (app: Express) => {
   app.get("/", getHomePage);
 
-  app.get("/handle-view-user/:id", getViewUser);
-  app.post("/handle-update-user/:id", postUpdateUser);
-
   // ADMIN
   app.get("/admin", getDashboardPage);
 
@@ -32,6 +29,12 @@ export const initRouters = (app: Express) => {
     postCreateUser
   );
   app.post("/admin/delete-user/:id", postDeleteUser);
+  app.get("/admin/view-user/:id", getViewUser);
+  app.post(
+    "/admin/update-user/:id",
+    fileUploadMiddleware("avatar"),
+    postUpdateUser
+  );
 
   app.get("/admin/order", getOrderPage);
   app.get("/admin/product", getProductPage);

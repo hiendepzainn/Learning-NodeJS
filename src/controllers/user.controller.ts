@@ -43,21 +43,24 @@ const postDeleteUser = async (req: Request, res: Response) => {
 };
 
 const getViewUser = async (req: Request, res: Response) => {
+  const roles = await getAllRoles();
   const id: number = Number(req.params.id);
 
   const user = await getUserByID(id);
-  return res.render("view-details.ejs", {
+  return res.render("admin/user/details.ejs", {
     user: user,
+    listRoles: roles,
   });
 };
 
 const postUpdateUser = async (req: Request, res: Response) => {
-  const { fullName, email, address } = req.body;
+  const { fullName, phone, role, address } = req.body;
   const id: number = Number(req.params.id);
+  const avatar = req.file ? req.file.filename : "";
 
-  await handleUpdateUser(id, fullName, email, address);
+  await handleUpdateUser(id, fullName, phone, role, address, avatar);
 
-  return res.redirect("/");
+  return res.redirect("/admin/user");
 };
 
 export {
