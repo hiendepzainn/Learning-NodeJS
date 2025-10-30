@@ -48,18 +48,24 @@
             <div class="row">
               <div class="col-6 mb-3">
                 <label class="form-label">Name</label>
-                <input name="name" type="text" class="form-control" />
+                <input required name="name" type="text" class="form-control" />
               </div>
 
               <div class="col-6 mb-3">
                 <label class="form-label">Price</label>
-                <input name="price" type="number" class="form-control" />
+                <input
+                  required
+                  name="price"
+                  type="number"
+                  class="form-control"
+                />
               </div>
             </div>
 
             <div class="mb-3">
               <label class="form-label">Detail Description</label>
               <textarea
+                required
                 name="descLong"
                 class="form-control"
                 rows="3"
@@ -69,12 +75,17 @@
             <div class="row">
               <div class="col-6 mb-3">
                 <label class="form-label">Short Description</label>
-                <input name="descShort" class="form-control" />
+                <input required name="descShort" class="form-control" />
               </div>
 
               <div class="col-6 mb-3">
                 <label class="form-label">Quantity</label>
-                <input name="quantity" type="number" class="form-control" />
+                <input
+                  required
+                  name="quantity"
+                  type="number"
+                  class="form-control"
+                />
               </div>
             </div>
 
