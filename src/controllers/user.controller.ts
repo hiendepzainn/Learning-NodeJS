@@ -10,11 +10,7 @@ import {
 import getConnection from "../config/database";
 
 const getHomePage = async (req: Request, res: Response) => {
-  // get data
-  const users = await getAllUsers();
-  return res.render("home.ejs", {
-    listUsers: users,
-  });
+  return res.render("client/home/show.ejs");
 };
 
 const getCreateUserPage = async (req: Request, res: Response) => {
