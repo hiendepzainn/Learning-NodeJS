@@ -26,7 +26,31 @@
     <div id="layoutSidenav">
       <%- include('../layout/sidenav.ejs'); %>
       <div id="layoutSidenav_content">
-        <div>Write code in here...</div>
+        <div
+          style="display: flex; justify-content: space-between; padding: 20px"
+        >
+          <h1>Manage Product</h1>
+          <div>
+            <a class="btn btn-primary" href="/admin/create-product"
+              >Create a new Product</a
+            >
+          </div>
+        </div>
+
+        <div style="padding: 15px">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Factory</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+
         <%- include('../layout/footer.ejs'); %>
       </div>
     </div>

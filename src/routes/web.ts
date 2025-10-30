@@ -15,14 +15,20 @@ import {
 } from "../controllers/admin/dashboard.controller";
 import fileUploadMiddleware from "../middleware/multer";
 import { getProductPageClient } from "../controllers/client/product.controller";
+import {
+  getCreateProductPage,
+  postCreateProduct,
+} from "../controllers/admin/product.controller";
 
 export const initRouters = (app: Express) => {
+  // CLIENT
   app.get("/", getHomePage);
   app.get("/product/:id", getProductPageClient);
 
   // ADMIN
   app.get("/admin", getDashboardPage);
 
+  // user module
   app.get("/admin/user", getUserPage);
   app.get("/admin/create-user", getCreateUserPage);
   app.post(
@@ -38,6 +44,15 @@ export const initRouters = (app: Express) => {
     postUpdateUser
   );
 
-  app.get("/admin/order", getOrderPage);
+  // product module
   app.get("/admin/product", getProductPage);
+  app.get("/admin/create-product", getCreateProductPage);
+  app.post(
+    "/admin/create-product",
+    fileUploadMiddleware("image", "images/product"),
+    postCreateProduct
+  );
+
+  // order module
+  app.get("/admin/order", getOrderPage);
 };
