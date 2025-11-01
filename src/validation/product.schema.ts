@@ -1,13 +1,13 @@
 import * as z from "zod";
 
 export const ProductSchema = z.object({
-  name: z.string().trim().min(1),
-  price: z.number().min(1),
-  detailDesc: z.string().trim().min(1, "ngắn quá!"),
-  shortDesc: z.string().trim().min(1),
-  quantity: z.number().min(1),
-  target: z.string().trim().min(1),
-  factory: z.string().trim().min(1),
+  name: z.string().trim().min(1, "'Name' phải có ít nhất 1 ký tự"),
+  price: z.number().min(1, "'price' phải lớn hơn 0"),
+  detailDesc: z.string().trim().min(1, "'detailDesc' phải có ít nhất 1 ký tự"),
+  shortDesc: z.string().trim().min(1, "'shortDesc' phải có ít nhất 1 ký tự"),
+  quantity: z.number().min(1, "'quantity' phải lớn hơn 0"),
+  target: z.string().trim().min(1, "'target' phải có ít nhất 1 ký tự"),
+  factory: z.string().trim().min(1, "'factory' phải có ít nhất 1 ký tự"),
 
   //     id         Int     @id @default(autoincrement())
   //   name       String  @db.VarChar(255)

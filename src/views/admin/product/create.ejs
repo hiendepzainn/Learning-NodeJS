@@ -37,7 +37,12 @@
     <div id="layoutSidenav">
       <%- include('../layout/sidenav.ejs'); %>
       <div id="layoutSidenav_content">
-        <div style="width: 45%; margin: auto">
+        <div style="width: 45%; margin: auto; padding-top: 20px">
+          <% if (listErrors) { %> <% listErrors.forEach((error) => { %>
+
+          <div class="alert alert-danger"><%-error.message %></div>
+          <%})%> <% }%>
+
           <h2>Create a new Product</h2>
 
           <form
