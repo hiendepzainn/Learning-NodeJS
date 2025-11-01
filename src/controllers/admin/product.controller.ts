@@ -4,6 +4,15 @@ import { ProductSchema, TProductSchema } from "../../validation/product.schema";
 const getCreateProductPage = async (req: Request, res: Response) => {
   return res.render("admin/product/create.ejs", {
     listErrors: undefined,
+    product: {
+      name: "",
+      price: "",
+      detailDesc: "",
+      shortDesc: "",
+      quantity: "",
+      factory: "canon",
+      target: "beginner",
+    },
   });
 };
 
@@ -29,6 +38,7 @@ const postCreateProduct = async (req: Request, res: Response) => {
   } else {
     return res.render("admin/product/create.ejs", {
       listErrors: result.error.issues,
+      product: processedData,
     });
   }
 };
