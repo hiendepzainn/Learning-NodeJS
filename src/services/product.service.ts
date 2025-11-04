@@ -29,4 +29,12 @@ const handleCreateProduct = async (
   });
 };
 
-export { handleCreateProduct, getAllProducts };
+const handleDeleteProduct = async (id: number) => {
+  await prisma.product.delete({
+    where: {
+      id: id,
+    },
+  });
+};
+
+export { handleCreateProduct, getAllProducts, handleDeleteProduct };

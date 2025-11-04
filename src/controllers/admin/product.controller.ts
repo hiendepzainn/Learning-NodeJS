@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { ProductSchema, TProductSchema } from "../../validation/product.schema";
-import { handleCreateProduct } from "../../services/product.service";
+import {
+  handleCreateProduct,
+  handleDeleteProduct,
+} from "../../services/product.service";
 
 const getCreateProductPage = async (req: Request, res: Response) => {
   return res.render("admin/product/create.ejs", {
@@ -60,4 +63,10 @@ const postCreateProduct = async (req: Request, res: Response) => {
   }
 };
 
-export { getCreateProductPage, postCreateProduct };
+const postDeleteProduct = async (req: Request, res: Response) => {
+  const id: number = Number(req.params.id);
+  await handleDeleteProduct(id);
+  return res.redirect("/admin/product");
+};
+
+export { getCreateProductPage, postCreateProduct, postDeleteProduct };

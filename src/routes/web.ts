@@ -18,6 +18,7 @@ import { getProductPageClient } from "../controllers/client/product.controller";
 import {
   getCreateProductPage,
   postCreateProduct,
+  postDeleteProduct,
 } from "../controllers/admin/product.controller";
 
 export const initRouters = (app: Express) => {
@@ -52,6 +53,7 @@ export const initRouters = (app: Express) => {
     fileUploadMiddleware("image", "images/product"),
     postCreateProduct
   );
+  app.post("/admin/delete-product/:id", postDeleteProduct);
 
   // order module
   app.get("/admin/order", getOrderPage);
