@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
+    <meta name="author" content="Hỏi Dân IT" />
+    <title>User Management</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+      rel="stylesheet"
+    />
+    <link href="/admin/css/styles.css" rel="stylesheet" />
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(() => {
+        const imageInput = $("#imageInput");
+        imageInput.change(function (e) {
+          const imgURL = URL.createObjectURL(e.target.files[0]);
+          $("#imagePreview").attr("src", imgURL);
+          $("#imagePreview").css({ display: "block" });
+        });
+      });
+    </script>
+  </head>
+
+  <body class="sb-nav-fixed">
+    <%- include('../layout/header.ejs'); %>
+    <div id="layoutSidenav">
+      <%- include('../layout/sidenav.ejs'); %>
+      <div id="layoutSidenav_content">
+        <div style="width: 45%; margin: auto">
+          <h2>Product List</h2>
+
+          <form
+            action="/admin/update-product/<%=product.id%>"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label">Name</label>
+                <input
+                  value="<%= product.name %>"
+                  name="name"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="col-6 mb-3">
+                <label class="form-label">Price</label>
+                <input value="<%= product.price %>" name="price" type="number" class="form-control" />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Detail Description</label>
+              <textarea
+                name="detailDesc"
+                class="form-control"
+                rows="3"
+              ><%= product.detailDesc %></textarea>
+            </div>
+
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label">Short Description</label>
+                <input value="<%= product.shortDesc %>" name="shortDesc" class="form-control" />
+              </div>
+
+              <div class="col-6 mb-3">
+                <label class="form-label">Quantity</label>
+                <input value="<%= product.quantity %>" name="quantity" type="number" class="form-control" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label">Factory</label>
+                <select name="factory" class="form-select">
+                  <option value="canon" <%=(product.factory === "canon") ? "selected" : "" %>>Canon</option>
+                  <option value="nikon" <%=(product.factory === "nikon") ? "selected" : "" %>>Nikon</option>
+                  <option value="sony" <%=(product.factory === "sony") ? "selected" : "" %>>Sony</option>
+                  <option value="fujifilm" <%=(product.factory === "fujifilm") ? "selected" : "" %>>Fujifilm</option>
+                </select>
+              </div>
+
+              <div class="col-6 mb-3">
+                <label class="form-label">Target</label>
+                <select name="target" class="form-select">
+                  <option value="beginner" <%=(product.target === "beginner") ? "selected" : "" %>>Beginner</option>
+                  <option value="intermediate" <%=(product.target === "intermediate") ? "selected" : "" %>>Intermediate</option>
+                  <option value="advanced" <%=(product.target === "advanced") ? "selected" : "" %>>Advanced</option>
+                  <option value="professional" <%=(product.target === "professional") ? "selected" : "" %>>Professional</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Image</label>
+              <input
+                name="image"
+                class="form-control"
+                type="file"
+                id="imageInput"
+                accept=".png, .jpg, .jpeg"
+              />
+              <% if (product.image) { %>
+                <img
+                style="margin-top: 10px; max-height: 250px; display: block"
+                alt="image preview"
+                id="imagePreview"
+                src="/images/product/<%-product.image%>"
+                />
+                <% } else { %>
+              <img
+                style="margin-top: 10px; max-height: 250px; display: none"
+                alt="image preview"
+                id="imagePreview"
+              />
+              <% } %>
+            </div>
+
+            <div class="mb-3">
+                <a href="/admin/product" class="btn btn-primary">Back</a>
+                <button type="submit" class="btn btn-warning">Update</button>
+            </div>
+          </form>
+        </div>
+
+        <%- include('../layout/footer.ejs'); %>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/admin/js/scripts.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/admin/assets/demo/chart-area-demo.js"></script>
+    <script src="/admin/assets/demo/chart-bar-demo.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/admin/js/datatables-simple-demo.js"></script>
+  </body>
+</html>

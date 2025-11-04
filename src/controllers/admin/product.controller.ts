@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import { ProductSchema, TProductSchema } from "../../validation/product.schema";
 import {
+  getProductByID,
   handleCreateProduct,
   handleDeleteProduct,
+  handleUpdateProduct,
 } from "../../services/product.service";
 
 const getCreateProductPage = async (req: Request, res: Response) => {
@@ -69,4 +71,45 @@ const postDeleteProduct = async (req: Request, res: Response) => {
   return res.redirect("/admin/product");
 };
 
-export { getCreateProductPage, postCreateProduct, postDeleteProduct };
+const getViewProduct = async (req: Request, res: Response) => {
+  const id: number = Number(req.params.id);
+  const product = await getProductByID(id);
+  return res.render("admin/product/details.ejs", {
+    product: product,
+  });
+};
+
+const postUpdateProduct = async (req: Request, res: Response) => {
+  const id: number = Number(req.params.id);
+  const { name, price, detailDesc, shortDesc, quantity, factory, target } =
+    req.body as TProductSchema;
+
+  let image = req.file ? req.file.filename : "";
+
+  if (!image) {
+    const product = await getProductByID(id);
+    image = product.image;
+  }
+
+  await handleUpdateProduct(
+    id,
+    name,
+    Number(price),
+    detailDesc,
+    shortDesc,
+    Number(quantity),
+    factory,
+    target,
+    image
+  );
+
+  return res.redirect("/admin/product");
+};
+
+export {
+  getCreateProductPage,
+  postCreateProduct,
+  postDeleteProduct,
+  getViewProduct,
+  postUpdateProduct,
+};

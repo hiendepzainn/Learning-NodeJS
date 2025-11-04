@@ -52,7 +52,12 @@ const getViewUser = async (req: Request, res: Response) => {
 const postUpdateUser = async (req: Request, res: Response) => {
   const { fullName, phone, role, address } = req.body;
   const id: number = Number(req.params.id);
-  const avatar = req.file ? req.file.filename : "";
+  let avatar = req.file ? req.file.filename : "";
+
+  if (!avatar) {
+    const user = await getUserByID(id);
+    avatar = user.avatar;
+  }
 
   await handleUpdateUser(id, fullName, phone, role, address, avatar);
 
