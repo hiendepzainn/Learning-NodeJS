@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ProductSchema, TProductSchema } from "../../validation/product.schema";
+import { handleCreateProduct } from "../../services/product.service";
 
 const getCreateProductPage = async (req: Request, res: Response) => {
   return res.render("admin/product/create.ejs", {
@@ -33,6 +34,22 @@ const postCreateProduct = async (req: Request, res: Response) => {
   const result = ProductSchema.safeParse(processedData);
   if (result.success) {
     // insert to Database
+    console.log(result);
+    const { name, price, detailDesc, shortDesc, quantity, factory, target } =
+      result.data;
+    const file = req.file;
+    const image = file ? file.filename : "";
+
+    await handleCreateProduct(
+      name,
+      price,
+      detailDesc,
+      shortDesc,
+      quantity,
+      factory,
+      target,
+      image
+    );
 
     return res.redirect("/admin/product");
   } else {

@@ -1,6 +1,3 @@
-import { error } from "console";
-import getConnection from "../config/database";
-import { PrismaClient } from "@prisma/client";
 import { prisma } from "../config/client";
 import { ACCOUNT_TYPE } from "../config/constant";
 
