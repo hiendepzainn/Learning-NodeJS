@@ -48,6 +48,32 @@
                 <th scope="col">Action</th>
               </tr>
             </thead>
+            <tbody>
+              <% listProducts.forEach(function(product) { %>
+              <tr>
+                <th scope="row"><%=product.id%></th>
+                <td><%=product.name%></td>
+                <td><%=product.price%></td>
+                <td><%=product.factory%></td>
+                <td>
+                  <div style="display: flex; gap: 10px">
+                    <form
+                      action="/admin/view-product/<%=product.id%>"
+                      method="get"
+                    >
+                      <button class="btn btn-warning">View</button>
+                    </form>
+                    <form
+                      action="/admin/delete-product/<%=product.id%>"
+                      method="post"
+                    >
+                      <button class="btn btn-danger">Delete</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
           </table>
         </div>
 

@@ -1,5 +1,10 @@
 import { prisma } from "../config/client";
 
+const getAllProducts = async () => {
+  const listProducts = await prisma.product.findMany();
+  return listProducts;
+};
+
 const handleCreateProduct = async (
   name: string,
   price: number,
@@ -24,4 +29,4 @@ const handleCreateProduct = async (
   });
 };
 
-export { handleCreateProduct };
+export { handleCreateProduct, getAllProducts };
