@@ -1,0 +1,2 @@
+npx prisma db push: ép cho DB sync với Schema prisma hiện tại, không tạo migration
+npx prisma db pull: ép cho Schema prisma sync với DB hiện tại
