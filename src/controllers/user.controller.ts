@@ -7,10 +7,14 @@ import {
   handleDeleteUser,
   handleUpdateUser,
 } from "../services/user.service";
-import getConnection from "../config/database";
+
+import { getAllProducts } from "../services/product.service";
 
 const getHomePage = async (req: Request, res: Response) => {
-  return res.render("client/home/show.ejs");
+  const products = await getAllProducts();
+  return res.render("client/home/show.ejs", {
+    listProducts: products,
+  });
 };
 
 const getCreateUserPage = async (req: Request, res: Response) => {
