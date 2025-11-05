@@ -22,6 +22,10 @@ import {
   postDeleteProduct,
   postUpdateProduct,
 } from "../controllers/admin/product.controller";
+import {
+  getLoginPage,
+  getRegisterPage,
+} from "../controllers/authentication.controller";
 
 export const initRouters = (app: Express) => {
   // CLIENT
@@ -65,4 +69,8 @@ export const initRouters = (app: Express) => {
 
   // order module
   app.get("/admin/order", getOrderPage);
+
+  // Authentication
+  app.get("/login", getLoginPage);
+  app.get("/register", getRegisterPage);
 };
