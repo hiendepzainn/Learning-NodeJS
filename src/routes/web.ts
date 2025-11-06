@@ -25,6 +25,7 @@ import {
 import {
   getLoginPage,
   getRegisterPage,
+  postRegister,
 } from "../controllers/authentication.controller";
 
 export const initRouters = (app: Express) => {
@@ -73,4 +74,5 @@ export const initRouters = (app: Express) => {
   // Authentication
   app.get("/login", getLoginPage);
   app.get("/register", getRegisterPage);
+  app.post("/register", postRegister);
 };

@@ -30,22 +30,29 @@
                     </h3>
                   </div>
                   <div class="card-body">
-                    <form>
+                    <% if (listErrors) { %> <% listErrors.forEach((error) => {%>
+                    <div class="alert alert-danger"><%-error.message %></div>
+                    <%})%> <% }%>
+                    <form action="/register" method="post">
                       <div class="row mb-3">
                         <div class="col-md-12">
                           <div class="form-floating mb-3 mb-md-0">
                             <input
+                              value="<%= oldData.fullName %>"
+                              name="fullName"
                               class="form-control"
-                              id="inputFirstName"
+                              id="inputFullName"
                               type="text"
-                              placeholder="Enter your first name"
+                              placeholder="Enter your fullname"
                             />
-                            <label for="inputFirstName">Full name</label>
+                            <label for="inputFullName">Full name</label>
                           </div>
                         </div>
                       </div>
                       <div class="form-floating mb-3">
                         <input
+                          value="<%= oldData.email %>"
+                          name="email"
                           class="form-control"
                           id="inputEmail"
                           type="email"
@@ -57,6 +64,8 @@
                         <div class="col-md-6">
                           <div class="form-floating mb-3 mb-md-0">
                             <input
+                              value="<%= oldData.password %>"
+                              name="password"
                               class="form-control"
                               id="inputPassword"
                               type="password"
@@ -68,6 +77,8 @@
                         <div class="col-md-6">
                           <div class="form-floating mb-3 mb-md-0">
                             <input
+                              value="<%= oldData.confirmPassword %>"
+                              name="confirmPassword"
                               class="form-control"
                               id="inputPasswordConfirm"
                               type="password"
@@ -81,9 +92,12 @@
                       </div>
                       <div class="mt-4 mb-0">
                         <div class="d-grid">
-                          <a class="btn btn-primary btn-block" href="login.html"
-                            >Create Account</a
+                          <button
+                            class="btn btn-primary btn-block"
+                            type="submit"
                           >
+                            Create Account
+                          </button>
                         </div>
                       </div>
                     </form>
