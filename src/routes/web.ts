@@ -79,6 +79,7 @@ export const initRouters = (app: Express) => {
     passport.authenticate("local", {
       successRedirect: "/",
       failureRedirect: "/login",
+      failureMessage: true,
     })
   );
   app.get("/register", getRegisterPage);

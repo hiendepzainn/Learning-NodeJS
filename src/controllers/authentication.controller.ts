@@ -4,7 +4,20 @@ import { error } from "console";
 import { insertUserToDatabase } from "../services/authentication.service";
 
 const getLoginPage = (req: Request, res: Response) => {
-  return res.render("login.ejs");
+  const session: any = req.session;
+
+  if (session.messages) {
+    // get final message
+    const error = session.messages[session.messages.length - 1];
+
+    // reset req.session.messages
+    session.messages = [];
+
+    return res.render("login.ejs", {
+      error: error,
+    });
+  }
+  return res.render("login.ejs", { error: undefined });
 };
 
 const getRegisterPage = (req: Request, res: Response) => {

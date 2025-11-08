@@ -29,6 +29,9 @@
                   </div>
                   <div class="card-body">
                     <form method="post" action="/login">
+                      <% if (error) { %>
+                      <div class="alert alert-danger"><%-error %></div>
+                      <% } %>
                       <div class="form-floating mb-3">
                         <input
                           name="username"
