@@ -27,6 +27,7 @@ import {
   getRegisterPage,
   postRegister,
 } from "../controllers/authentication.controller";
+import passport from "passport";
 
 export const initRouters = (app: Express) => {
   // CLIENT
@@ -73,6 +74,13 @@ export const initRouters = (app: Express) => {
 
   // Authentication
   app.get("/login", getLoginPage);
+  app.post(
+    "/login",
+    passport.authenticate("local", {
+      successRedirect: "/",
+      failureRedirect: "/login",
+    })
+  );
   app.get("/register", getRegisterPage);
   app.post("/register", postRegister);
 };

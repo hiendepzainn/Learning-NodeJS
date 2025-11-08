@@ -2,6 +2,8 @@ import express from "express";
 import "dotenv/config";
 import { initRouters } from "./routes/web";
 import initDatabase from "./config/seed";
+import passport from "passport";
+import configPassportLocal from "./middleware/passport.local";
 const app = express();
 
 const PORT = process.env.PORT || 8888;
@@ -15,6 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 
 //config static files
 app.use(express.static("public"));
+
+//config passport
+app.use(passport.initialize());
+configPassportLocal();
 
 //config routers
 initRouters(app);
