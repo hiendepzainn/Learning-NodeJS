@@ -12,7 +12,7 @@ import { getAllProducts } from "../services/product.service";
 
 const getHomePage = async (req: Request, res: Response) => {
   const products = await getAllProducts();
-  console.log(req.user);
+  console.log(">>> Current user: ", req.user);
   return res.render("client/home/show.ejs", {
     listProducts: products,
   });
