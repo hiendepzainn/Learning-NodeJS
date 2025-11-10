@@ -1,0 +1,11 @@
+- Hiện tại đang lưu session ở RAM --> restart server là mất --> chuyển qua lưu DB
+- Vì dùng Prisma + MySQL, nên cần cài 1 package kết nối Session và Prisma
+//to-do: Cài đặt
+
+//to-do: Thêm model Session trong prisma.Schema
+
+//to-do: Generate lại gợi ý code + sync schema mới với Database
+
+//to-do: Cấu hình cho package mới
+
+//to-do: Tìm hiểu 2 hàm SerializeUser & DeserializeUser (xem kỹ)
