@@ -1,0 +1,21 @@
+Luồng hoạt động của login và truy cập các route với passport + session:
+
+
+● Client: login
+--> Passport check: success/not success
+
+- Not success: redirect to "/login", do nothing
+- Success: 
+	+ Tạo 1 object session trong DB, gồm các trường: sessionID, data, expiresAt
+	+ Lưu data (được config qua hàm Serialize) vào trường "data"
+	+ Gửi sessionID cho browser/client (cookie)
+
+● Client: access any routes
+--> Gửi request kèm sessionID (tự động)
+--> Server check xem sessionID có hợp lệ không (tồn tại trong DB + chưa hết hạn)
+
+- Invalid: redirect to "/login", do nothing
+- Valid: 
+	+ Lấy data trong field "data" của session
+	+ Convert ra thông tin (qua hàm deserialize)
+	+ Nạp vào req.user để sử dụng
