@@ -28,6 +28,7 @@ import {
   postRegister,
 } from "../controllers/authentication.controller";
 import passport from "passport";
+import { checkLogin } from "../middleware/auth";
 
 export const initRouters = (app: Express) => {
   // CLIENT
@@ -73,7 +74,7 @@ export const initRouters = (app: Express) => {
   app.get("/admin/order", getOrderPage);
 
   // Authentication
-  app.get("/login", getLoginPage);
+  app.get("/login", checkLogin, getLoginPage);
   app.post(
     "/login",
     passport.authenticate("local", {
@@ -82,6 +83,6 @@ export const initRouters = (app: Express) => {
       failureMessage: true,
     })
   );
-  app.get("/register", getRegisterPage);
+  app.get("/register", checkLogin, getRegisterPage);
   app.post("/register", postRegister);
 };
