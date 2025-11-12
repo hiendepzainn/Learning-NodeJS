@@ -44,6 +44,12 @@ app.use(passport.initialize());
 app.use(passport.authenticate("session"));
 configPassportLocal();
 
+//config res.locals
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+});
+
 //config routers
 initRouters(app);
 
