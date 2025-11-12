@@ -1,7 +1,7 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { handleLogin } from "../services/authentication.service";
-import { getUserByID } from "../services/user.service";
+import { getUserAndRoleByID, getUserByID } from "../services/user.service";
 
 const configPassportLocal = () => {
   passport.use(
@@ -21,7 +21,7 @@ const configPassportLocal = () => {
   // What data that convert from "data" to to load to req.user
   passport.deserializeUser(function (object: any, cb) {
     process.nextTick(async function () {
-      const user = await getUserByID(object.id);
+      const user = await getUserAndRoleByID(object.id);
       return cb(null, user);
     });
   });

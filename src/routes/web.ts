@@ -25,10 +25,11 @@ import {
 import {
   getLoginPage,
   getRegisterPage,
+  getSuccessLoginPage,
   postRegister,
 } from "../controllers/authentication.controller";
 import passport from "passport";
-import { checkLogin } from "../middleware/auth";
+import { checkAdmin, checkLogin } from "../middleware/auth";
 
 export const initRouters = (app: Express) => {
   // CLIENT
@@ -36,7 +37,7 @@ export const initRouters = (app: Express) => {
   app.get("/product/:id", getProductPageClient);
 
   // ADMIN
-  app.get("/admin", getDashboardPage);
+  app.get("/admin", checkAdmin, getDashboardPage);
 
   // user module
   app.get("/admin/user", getUserPage);
@@ -78,11 +79,13 @@ export const initRouters = (app: Express) => {
   app.post(
     "/login",
     passport.authenticate("local", {
-      successRedirect: "/",
+      successRedirect: "/successLoginPage",
       failureRedirect: "/login",
       failureMessage: true,
     })
   );
   app.get("/register", checkLogin, getRegisterPage);
   app.post("/register", postRegister);
+
+  app.get("/successLoginPage", getSuccessLoginPage);
 };

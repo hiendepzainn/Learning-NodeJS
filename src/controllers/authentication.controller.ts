@@ -20,6 +20,16 @@ const getLoginPage = (req: Request, res: Response) => {
   return res.render("login.ejs", { error: undefined });
 };
 
+const getSuccessLoginPage = (req: Request, res: Response) => {
+  const user = req.user as any;
+  const roleName = user.role.name;
+  if (roleName === "ADMIN") {
+    res.redirect("/admin");
+  } else {
+    res.redirect("/");
+  }
+};
+
 const getRegisterPage = (req: Request, res: Response) => {
   return res.render("register.ejs", {
     listErrors: undefined,
@@ -51,4 +61,4 @@ const postRegister = async (req: Request, res: Response) => {
   }
 };
 
-export { getLoginPage, getRegisterPage, postRegister };
+export { getLoginPage, getRegisterPage, postRegister, getSuccessLoginPage };

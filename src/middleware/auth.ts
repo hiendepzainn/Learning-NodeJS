@@ -9,4 +9,14 @@ const checkLogin = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export { checkLogin };
+const checkAdmin = (req: Request, res: Response, next: NextFunction) => {
+  const user = req.user as any;
+  const roleName = user.role.name;
+  if (roleName === "ADMIN") {
+    next();
+  } else {
+    res.redirect("/");
+  }
+};
+
+export { checkLogin, checkAdmin };
