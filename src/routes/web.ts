@@ -31,6 +31,7 @@ import {
 } from "../controllers/authentication.controller";
 import passport from "passport";
 import { checkAdmin, checkLogin } from "../middleware/auth";
+import { get404Page } from "../controllers/status/status.controller";
 
 export const initRouters = (app: Express) => {
   // CLIENT
@@ -89,4 +90,6 @@ export const initRouters = (app: Express) => {
   app.post("/register", postRegister);
   app.get("/successLoginPage", getSuccessLoginPage);
   app.post("/logout", postLogout);
+
+  app.use(get404Page);
 };
