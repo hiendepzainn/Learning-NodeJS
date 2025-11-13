@@ -11,12 +11,18 @@ const checkLogin = (req: Request, res: Response, next: NextFunction) => {
 
 const checkAdmin = (req: Request, res: Response, next: NextFunction) => {
   const user = req.user as any;
-  const roleName = user?.role?.name;
-  if (roleName === "ADMIN") {
-    next();
+  if (!user) {
+    res.render("status/403.ejs");
+    return;
   } else {
-    res.redirect("/");
+    const roleName = user?.role?.name;
+    if (roleName !== "ADMIN") {
+      res.render("status/403.ejs");
+      return;
+    }
   }
+
+  next();
 };
 
 export { checkLogin, checkAdmin };
