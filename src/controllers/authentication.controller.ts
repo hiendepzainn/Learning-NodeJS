@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { RegisterSchema } from "../validation/authentication.schema";
 import { error } from "console";
 import { insertUserToDatabase } from "../services/authentication.service";
@@ -61,4 +61,19 @@ const postRegister = async (req: Request, res: Response) => {
   }
 };
 
-export { getLoginPage, getRegisterPage, postRegister, getSuccessLoginPage };
+const postLogout = (req: Request, res: Response, next: NextFunction) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
+
+export {
+  getLoginPage,
+  getRegisterPage,
+  postRegister,
+  getSuccessLoginPage,
+  postLogout,
+};

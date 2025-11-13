@@ -26,6 +26,7 @@ import {
   getLoginPage,
   getRegisterPage,
   getSuccessLoginPage,
+  postLogout,
   postRegister,
 } from "../controllers/authentication.controller";
 import passport from "passport";
@@ -86,6 +87,6 @@ export const initRouters = (app: Express) => {
   );
   app.get("/register", checkLogin, getRegisterPage);
   app.post("/register", postRegister);
-
   app.get("/successLoginPage", getSuccessLoginPage);
+  app.post("/logout", postLogout);
 };
