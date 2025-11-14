@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { RegisterSchema } from "../validation/authentication.schema";
-import { error } from "console";
 import { insertUserToDatabase } from "../services/authentication.service";
 
 const getLoginPage = (req: Request, res: Response) => {

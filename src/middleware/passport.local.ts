@@ -1,7 +1,7 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { handleLogin } from "../services/authentication.service";
-import { getUserAndRoleByID, getUserByID } from "../services/user.service";
+import { getUserAndRoleByID } from "../services/user.service";
 
 const configPassportLocal = () => {
   passport.use(

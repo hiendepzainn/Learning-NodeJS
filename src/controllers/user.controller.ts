@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import {
   getAllRoles,
-  getAllUsers,
   getUserByID,
   handleCreateUser,
   handleDeleteUser,
