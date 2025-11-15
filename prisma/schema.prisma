@@ -31,6 +31,7 @@ model User {
   avatar      String? @db.VarChar(255)
   role        Role    @relation(fields: [roleID], references: [id])
   roleID      Int
+  cart        Cart?
 
   @@map("users")
 }
@@ -62,6 +63,35 @@ model Product {
   sold       Int?    @default(0)
   target     String  @db.VarChar(255)
   factory    String  @db.VarChar(255)
+  cartDetails ProductCartDetail[]
 
   @@map("products")
+}
+
+model Cart {
+  id            Int     @id @default(autoincrement())
+  user          User    @relation(fields: [userID], references: [id])
+  userID        Int     @unique
+  sum           Int 
+  cartDetails   CartDetail[]
+}
+
+model CartDetail {
+  id        Int    @id @default(autoincrement())
+  cart      Cart   @relation(fields: [cartID], references: [id])
+  cartID    Int
+  products  ProductCartDetail[]
+}
+
+model ProductCartDetail {
+  product       Product     @relation(fields: [productID], references: [id])
+  productID     Int
+  cartdetail    CartDetail  @relation(fields: [cartDetailID], references: [id])
+  cartDetailID  Int
+  quantity      Int
+  price         Int
+  assignedAt    DateTime    @default(now())
+  assignedBy    String
+
+  @@id([productID, cartDetailID])
 }
