@@ -1,6 +1,9 @@
 import { Express } from "express";
 import { getHomePage } from "../controllers/user.controller";
-import { getProductPageClient } from "../controllers/client/product.controller";
+import {
+  getProductPageClient,
+  postAddProductToCart,
+} from "../controllers/client/product.controller";
 import {
   getLoginPage,
   getRegisterPage,
@@ -17,6 +20,9 @@ export const initRouters = (app: Express) => {
   // CLIENT
   app.get("/", getHomePage);
   app.get("/product/:id", getProductPageClient);
+
+  // Product (client)
+  app.post("/addProductToCart/:id", postAddProductToCart);
 
   // Authentication
   app.get("/login", checkLogin, getLoginPage);
