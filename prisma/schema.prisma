@@ -29,8 +29,10 @@ model User {
   phone       String? @db.VarChar(255)
   accountType String  @db.VarChar(255)
   avatar      String? @db.VarChar(255)
+
   role        Role    @relation(fields: [roleID], references: [id])
   roleID      Int
+
   cart        Cart?
 
   @@map("users")
@@ -63,35 +65,36 @@ model Product {
   sold       Int?    @default(0)
   target     String  @db.VarChar(255)
   factory    String  @db.VarChar(255)
-  cartDetails ProductCartDetail[]
+
+  cartDetails CartDetail[]
 
   @@map("products")
 }
 
 model Cart {
   id            Int     @id @default(autoincrement())
+  sum           Int
+
   user          User    @relation(fields: [userID], references: [id])
   userID        Int     @unique
-  sum           Int 
+  
   cartDetails   CartDetail[]
+
+  @@map("carts")
 }
 
 model CartDetail {
   id        Int    @id @default(autoincrement())
+  price     Int
+  quantity  Int
+
   cart      Cart   @relation(fields: [cartID], references: [id])
   cartID    Int
-  products  ProductCartDetail[]
+  
+  product Product @relation(fields: [productID], references: [id])
+  productID Int
+
+  @@map("cart_detail")
 }
 
-model ProductCartDetail {
-  product       Product     @relation(fields: [productID], references: [id])
-  productID     Int
-  cartdetail    CartDetail  @relation(fields: [cartDetailID], references: [id])
-  cartDetailID  Int
-  quantity      Int
-  price         Int
-  assignedAt    DateTime    @default(now())
-  assignedBy    String
-
-  @@id([productID, cartDetailID])
-}
+// product 1 - N cartDetail
