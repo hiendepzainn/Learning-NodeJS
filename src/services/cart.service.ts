@@ -95,10 +95,24 @@ const getSumCartByID = async (id) => {
   return cart?.sum ?? 0;
 };
 
+const getCartDetailsByCartIDJoinProduct = async (cartID) => {
+  const cartDetails = await prisma.cartDetail.findMany({
+    where: {
+      cartID: cartID,
+    },
+    include: {
+      product: true,
+    },
+  });
+
+  return cartDetails;
+};
+
 export {
   getCartFromUserID,
   createNewCart,
   updateSumOfCart,
   upsertCartDetail,
   getSumCartByID,
+  getCartDetailsByCartIDJoinProduct,
 };
