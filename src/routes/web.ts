@@ -15,6 +15,7 @@ import passport from "passport";
 import { checkAdmin, checkLogin } from "../middleware/auth";
 import { get404Page } from "../controllers/status/status.controller";
 import adminRouter from "./adminRouter";
+import { getCartPage } from "../controllers/client/cart.controller";
 
 export const initRouters = (app: Express) => {
   // CLIENT
@@ -23,6 +24,9 @@ export const initRouters = (app: Express) => {
 
   // Product (client)
   app.post("/addProductToCart/:id", postAddProductToCart);
+
+  // Cart (client)
+  app.get("/cart", getCartPage);
 
   // Authentication
   app.get("/login", checkLogin, getLoginPage);
