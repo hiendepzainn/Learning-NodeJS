@@ -2,6 +2,7 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { handleLogin } from "../services/authentication.service";
 import { getUserAndRoleByID } from "../services/user.service";
+import { getSumCartByID } from "../services/cart.service";
 
 const configPassportLocal = () => {
   passport.use(
@@ -22,7 +23,8 @@ const configPassportLocal = () => {
   passport.deserializeUser(function (object: any, cb) {
     process.nextTick(async function () {
       const user = await getUserAndRoleByID(object.id);
-      return cb(null, user);
+      const sumCart = await getSumCartByID(object.id);
+      return cb(null, { ...user, sumCart: sumCart });
     });
   });
 };

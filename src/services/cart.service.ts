@@ -85,4 +85,20 @@ const upsertCartDetail = async (quantity, userID, productID) => {
   });
 };
 
-export { getCartFromUserID, createNewCart, updateSumOfCart, upsertCartDetail };
+const getSumCartByID = async (id) => {
+  const cart = await prisma.cart.findUnique({
+    where: {
+      userID: id,
+    },
+  });
+
+  return cart?.sum ?? 0;
+};
+
+export {
+  getCartFromUserID,
+  createNewCart,
+  updateSumOfCart,
+  upsertCartDetail,
+  getSumCartByID,
+};
