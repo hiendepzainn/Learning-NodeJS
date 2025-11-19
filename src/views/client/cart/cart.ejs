@@ -136,7 +136,13 @@
                       </div>
                     </th>
                     <td>
-                      <p class="mb-0 mt-4"><%= item.product.name %></p>
+                      <p class="mb-0 mt-4 text-primary">
+                        <a
+                          target="_blank"
+                          href="/product/<%= item.product.id %>"
+                          ><%= item.product.name %></a
+                        >
+                      </p>
                     </td>
                     <td>
                       <p class="mb-0 mt-4">
@@ -196,26 +202,31 @@
                 <div class="col-6">
                   <div class="bg-light rounded">
                     <div class="p-4">
-                      <h1 class="display-6 mb-4">
-                        Cart <span class="fw-normal">Total</span>
-                      </h1>
+                      <h1 class="display-6 mb-4">Thông tin Đơn Hàng</h1>
                       <div class="d-flex justify-content-between mb-4">
-                        <h5 class="mb-0 me-4">Subtotal:</h5>
-                        <p class="mb-0">$96.00</p>
+                        <h5 class="mb-0 me-4">Thành tiền:</h5>
+                        <p class="mb-0">
+                          <%= new Intl.NumberFormat('vi-VN', { style: 'currency'
+                          , currency: 'VND' }).format(total) %>
+                        </p>
                       </div>
                       <div class="d-flex justify-content-between">
-                        <h5 class="mb-0 me-4">Shipping</h5>
+                        <h5 class="mb-0 me-4">Phí vận chuyển:</h5>
                         <div class="">
-                          <p class="mb-0">Flat rate: $3.00</p>
+                          <p class="mb-0">FREE DELIVERY</p>
                         </div>
                       </div>
-                      <p class="mb-0 text-end">Shipping to Ukraine.</p>
+                      <!-- <p class="mb-0 text-end">Shipping to Ukraine.</p> -->
                     </div>
                     <div
                       class="py-4 mb-4 border-top border-bottom d-flex justify-content-between"
                     >
-                      <h5 class="mb-0 ps-4 me-4">Total</h5>
-                      <p class="mb-0 pe-4">$99.00</p>
+                      <h5 class="mb-0 ps-4 me-4">Tổng số tiền:</h5>
+
+                      <p class="mb-0 pe-4">
+                        <%= new Intl.NumberFormat('vi-VN', { style: 'currency' ,
+                        currency: 'VND' }).format(total) %>
+                      </p>
                     </div>
                     <button
                       class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"

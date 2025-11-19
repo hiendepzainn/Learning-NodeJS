@@ -11,12 +11,22 @@ const getCartPage = async (req: Request, res: Response) => {
   }
 
   const cart = await getCartFromUserID(user.id);
+  if (!cart) {
+    return res.render("client/cart/cart.ejs", {
+      cartDetails: [],
+      total: 0,
+    });
+  }
   const cartID = cart.id;
   const cartDetails = await getCartDetailsByCartIDJoinProduct(cartID);
-  console.log(cartDetails);
+  let total = 0;
+  cartDetails.forEach((item) => {
+    total += item.quantity * item.price;
+  });
 
   res.render("client/cart/cart.ejs", {
     cartDetails: cartDetails,
+    total: total,
   });
 };
 
