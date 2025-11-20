@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 import {
+  decreaseSumCart,
+  deleteCartByID,
+  deleteCartDetailByID,
   getCartDetailsByCartIDJoinProduct,
+  getCartDetailsByID,
   getCartFromUserID,
 } from "../../services/cart.service";
 
@@ -30,4 +34,27 @@ const getCartPage = async (req: Request, res: Response) => {
   });
 };
 
-export { getCartPage };
+const postDeleteCartDetailByID = async (req: Request, res: Response) => {
+  const id: number = Number(req.params.id);
+
+  // Lấy quantity của CartDetail đó
+  const cartDetail = await getCartDetailsByID(id);
+  const quantity = cartDetail.quantity;
+
+  // Lấy sum của Cart chứa CartDetail đó
+  const user = req.user as any;
+  const sum = user.sumCart;
+
+  // So sánh, nếu < thì xóa CartDetail, ko thì xóa CartDetail + xóa Cart
+  const cartID = cartDetail.cartID;
+  if (quantity < sum) {
+    await deleteCartDetailByID(id);
+    await decreaseSumCart(cartID, quantity);
+  } else {
+    await deleteCartDetailByID(id);
+    await deleteCartByID(cartID);
+  }
+  return res.redirect("/cart");
+};
+
+export { getCartPage, postDeleteCartDetailByID };

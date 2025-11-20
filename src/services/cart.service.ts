@@ -108,6 +108,45 @@ const getCartDetailsByCartIDJoinProduct = async (cartID) => {
   return cartDetails;
 };
 
+const getCartDetailsByID = async (id) => {
+  const cartDetail = await prisma.cartDetail.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
+  return cartDetail;
+};
+
+const deleteCartDetailByID = async (id) => {
+  await prisma.cartDetail.delete({
+    where: {
+      id: id,
+    },
+  });
+};
+
+const decreaseSumCart = async (cartID, quantity) => {
+  await prisma.cart.update({
+    where: {
+      id: cartID,
+    },
+    data: {
+      sum: {
+        decrement: quantity,
+      },
+    },
+  });
+};
+
+const deleteCartByID = async (cartID) => {
+  await prisma.cart.delete({
+    where: {
+      id: cartID,
+    },
+  });
+};
+
 export {
   getCartFromUserID,
   createNewCart,
@@ -115,4 +154,8 @@ export {
   upsertCartDetail,
   getSumCartByID,
   getCartDetailsByCartIDJoinProduct,
+  getCartDetailsByID,
+  deleteCartDetailByID,
+  decreaseSumCart,
+  deleteCartByID,
 };
