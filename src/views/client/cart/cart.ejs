@@ -199,10 +199,10 @@
             </div>
 
             <% if (cartDetails.length === 0){ %>
-              <div style="margin-bottom: 100px;">
-                <h5>Sorry, bạn chưa có sản phẩm nào trong giỏ hàng</h5>
-              </div>
-              
+            <div style="margin-bottom: 100px">
+              <h5>Sorry, bạn chưa có sản phẩm nào trong giỏ hàng</h5>
+            </div>
+
             <% } else { %>
             <div class="row">
               <div class="col-12 g-4 justify-content-center">
@@ -231,7 +231,7 @@
                     >
                       <h5 class="mb-0 ps-4 me-4">Tổng số tiền:</h5>
 
-                      <p class="mb-0 pe-4" data-cart-total-price="<%= total %>>
+                      <p class="mb-0 pe-4" data-cart-total-price="<%= total %>">
                         <%= new Intl.NumberFormat('vi-VN', { style: 'currency' ,
                         currency: 'VND' }).format(total) %>
                       </p>
@@ -247,9 +247,7 @@
               </div>
             </div>
           </div>
-            <% } %>
-
-            
+          <% } %>
         </div>
       </div>
     </div>
