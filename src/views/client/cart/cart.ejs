@@ -166,6 +166,8 @@
                           type="text"
                           class="form-control form-control-sm text-center border-0"
                           value="<%= item.quantity %>"
+                          data-cart-detail-id="<%= item.id %>"
+                          data-cart-detail-price="<%= item.price %>"
                         />
                         <div class="input-group-btn">
                           <button
@@ -177,7 +179,7 @@
                       </div>
                     </td>
                     <td>
-                      <p class="mb-0 mt-4">
+                      <p class="mb-0 mt-4" data-cart-detail-id="<%= item.id %>">
                         <%= new Intl.NumberFormat('vi-VN', { style: 'currency' ,
                         currency: 'VND' }).format(item.product.price *
                         item.quantity) %>
@@ -196,6 +198,12 @@
               </table>
             </div>
 
+            <% if (cartDetails.length === 0){ %>
+              <div style="margin-bottom: 100px;">
+                <h5>Sorry, bạn chưa có sản phẩm nào trong giỏ hàng</h5>
+              </div>
+              
+            <% } else { %>
             <div class="row">
               <div class="col-12 g-4 justify-content-center">
                 <div class="col-8"></div>
@@ -205,7 +213,7 @@
                       <h1 class="display-6 mb-4">Thông tin Đơn Hàng</h1>
                       <div class="d-flex justify-content-between mb-4">
                         <h5 class="mb-0 me-4">Thành tiền:</h5>
-                        <p class="mb-0">
+                        <p class="mb-0" data-cart-total-price="<%= total %>">
                           <%= new Intl.NumberFormat('vi-VN', { style: 'currency'
                           , currency: 'VND' }).format(total) %>
                         </p>
@@ -213,7 +221,7 @@
                       <div class="d-flex justify-content-between">
                         <h5 class="mb-0 me-4">Phí vận chuyển:</h5>
                         <div class="">
-                          <p class="mb-0">FREE DELIVERY</p>
+                          <p class="mb-0">Miễn phí</p>
                         </div>
                       </div>
                       <!-- <p class="mb-0 text-end">Shipping to Ukraine.</p> -->
@@ -223,7 +231,7 @@
                     >
                       <h5 class="mb-0 ps-4 me-4">Tổng số tiền:</h5>
 
-                      <p class="mb-0 pe-4">
+                      <p class="mb-0 pe-4" data-cart-total-price="<%= total %>>
                         <%= new Intl.NumberFormat('vi-VN', { style: 'currency' ,
                         currency: 'VND' }).format(total) %>
                       </p>
@@ -239,6 +247,9 @@
               </div>
             </div>
           </div>
+            <% } %>
+
+            
         </div>
       </div>
     </div>
