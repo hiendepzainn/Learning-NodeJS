@@ -147,6 +147,17 @@ const deleteCartByID = async (cartID) => {
   });
 };
 
+const updateCartDetail = async (id: number, quantity: number) => {
+  await prisma.cartDetail.update({
+    where: {
+      id: id,
+    },
+    data: {
+      quantity: quantity,
+    },
+  });
+};
+
 export {
   getCartFromUserID,
   createNewCart,
@@ -158,4 +169,5 @@ export {
   deleteCartDetailByID,
   decreaseSumCart,
   deleteCartByID,
+  updateCartDetail,
 };

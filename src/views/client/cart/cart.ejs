@@ -123,7 +123,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% cartDetails.forEach((item) => { %>
+                  <% cartDetails.forEach((item, index) => { %>
                   <tr>
                     <th scope="row">
                       <div class="d-flex align-items-center">
@@ -168,6 +168,7 @@
                           value="<%= item.quantity %>"
                           data-cart-detail-id="<%= item.id %>"
                           data-cart-detail-price="<%= item.price %>"
+                          index-cart-detail="<%= index %>"
                         />
                         <div class="input-group-btn">
                           <button
@@ -242,7 +243,23 @@
                         currency: 'VND' }).format(total) %>
                       </p>
                     </div>
-                    <form action="/checkout" method="get">
+                    <form action="/confirm-cart" method="post">
+                      <% cartDetails.forEach((item, index) => { %>
+                      <div>cartDetailID</div>
+                      <input
+                        name="item[<%= index%>][id]"
+                        value="<%= item.id %>"
+                      />
+                      <br />
+                      <div>quantity</div>
+                      <input
+                        name="item[<%= index %>][quantity]"
+                        value="<%= item.quantity %>"
+                        id="number-<%= index %>"
+                      />
+                      <br />
+                      <br />
+                      <% }) %>
                       <button
                         class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
                         type="submit"

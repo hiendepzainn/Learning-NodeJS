@@ -164,6 +164,10 @@
     //get price
     const price = input.attr("data-cart-detail-price");
     const id = input.attr("data-cart-detail-id");
+    const index = input.attr("index-cart-detail");
+
+    const hiddenInputQuantity = document.getElementById(`number-${index}`);
+    hiddenInputQuantity.value = newVal;
 
     const priceElement = $(`p[data-cart-detail-id='${id}']`);
     if (priceElement) {

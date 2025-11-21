@@ -6,6 +6,7 @@ import {
   getCartDetailsByCartIDJoinProduct,
   getCartDetailsByID,
   getCartFromUserID,
+  updateCartDetail,
 } from "../../services/cart.service";
 
 const getCartPage = async (req: Request, res: Response) => {
@@ -84,4 +85,18 @@ const getCheckOutPage = async (req: Request, res: Response) => {
   });
 };
 
-export { getCartPage, postDeleteCartDetailByID, getCheckOutPage };
+const postConfirmCart = async (req: Request, res: Response) => {
+  const newCartDetails: { id: string; quantity: string }[] = req.body.item;
+  newCartDetails.forEach(async (item) => {
+    await updateCartDetail(+item.id, +item.quantity);
+  });
+
+  res.redirect("/checkout");
+};
+
+export {
+  getCartPage,
+  postDeleteCartDetailByID,
+  getCheckOutPage,
+  postConfirmCart,
+};
