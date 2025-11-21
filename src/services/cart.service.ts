@@ -158,6 +158,17 @@ const updateCartDetail = async (id: number, quantity: number) => {
   });
 };
 
+const updateQuantityCart = async (cartID, newQuantity) => {
+  await prisma.cart.update({
+    where: {
+      id: cartID,
+    },
+    data: {
+      sum: newQuantity,
+    },
+  });
+};
+
 export {
   getCartFromUserID,
   createNewCart,
@@ -170,4 +181,5 @@ export {
   decreaseSumCart,
   deleteCartByID,
   updateCartDetail,
+  updateQuantityCart,
 };

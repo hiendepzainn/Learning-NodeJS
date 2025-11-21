@@ -244,22 +244,24 @@
                       </p>
                     </div>
                     <form action="/confirm-cart" method="post">
-                      <% cartDetails.forEach((item, index) => { %>
-                      <div>cartDetailID</div>
-                      <input
-                        name="item[<%= index%>][id]"
-                        value="<%= item.id %>"
-                      />
-                      <br />
-                      <div>quantity</div>
-                      <input
-                        name="item[<%= index %>][quantity]"
-                        value="<%= item.quantity %>"
-                        id="number-<%= index %>"
-                      />
-                      <br />
-                      <br />
-                      <% }) %>
+                      <div style="display: none">
+                        <% cartDetails.forEach((item, index) => { %>
+                        <div>cartDetailID</div>
+                        <input
+                          name="item[<%= index%>][id]"
+                          value="<%= item.id %>"
+                        />
+                        <br />
+                        <div>quantity</div>
+                        <input
+                          name="item[<%= index %>][quantity]"
+                          value="<%= item.quantity %>"
+                          id="number-<%= index %>"
+                        />
+                        <br />
+                        <br />
+                        <% }) %>
+                      </div>
                       <button
                         class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
                         type="submit"
