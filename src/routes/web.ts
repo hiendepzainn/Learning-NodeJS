@@ -17,6 +17,7 @@ import { get404Page } from "../controllers/status/status.controller";
 import adminRouter from "./adminRouter";
 import {
   getCartPage,
+  getCheckOutPage,
   postDeleteCartDetailByID,
 } from "../controllers/client/cart.controller";
 
@@ -31,6 +32,7 @@ export const initRouters = (app: Express) => {
   // Cart (client)
   app.get("/cart", getCartPage);
   app.post("/deleteCartDetail/:id", postDeleteCartDetailByID);
+  app.get("/checkout", getCheckOutPage);
 
   // Authentication
   app.get("/login", checkLogin, getLoginPage);
