@@ -122,6 +122,10 @@ const postCreateOrder = async (req: Request, res: Response) => {
   const cartID = cart.id;
   await deleteCartDetailAndCart(cartID);
 
+  res.redirect("/thankyou");
+};
+
+const getThankyouPage = async (req: Request, res: Response) => {
   res.render("client/cart/thankyou.ejs");
 };
 
@@ -131,4 +135,5 @@ export {
   getCheckOutPage,
   postConfirmCart,
   postCreateOrder,
+  getThankyouPage,
 };

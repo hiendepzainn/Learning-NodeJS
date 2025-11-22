@@ -21,6 +21,7 @@ import {
   postDeleteCartDetailByID,
   postConfirmCart,
   postCreateOrder,
+  getThankyouPage,
 } from "../controllers/client/cart.controller";
 
 export const initRouters = (app: Express) => {
@@ -37,6 +38,7 @@ export const initRouters = (app: Express) => {
   app.get("/checkout", getCheckOutPage);
   app.post("/confirm-cart", postConfirmCart);
   app.post("/create-order", postCreateOrder);
+  app.get("/thankyou", getThankyouPage);
 
   // Authentication
   app.get("/login", checkLogin, getLoginPage);
