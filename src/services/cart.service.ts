@@ -169,6 +169,63 @@ const updateQuantityCart = async (cartID, newQuantity) => {
   });
 };
 
+const getCartDetailByCartID = async (cartID) => {
+  const cartDetails = await prisma.cartDetail.findMany({
+    where: {
+      cartID: cartID,
+    },
+  });
+
+  return cartDetails;
+};
+
+const createOrderAndOrderDetail = async (
+  receiverName: string,
+  receiverAddress: string,
+  receiverPhone: string,
+  total: number,
+  userID: number
+) => {
+  const cart = await getCartFromUserID(userID);
+  const cartID = cart.id;
+  const cartDetails = await getCartDetailByCartID(cartID);
+  const orderDetails = cartDetails.map(({ price, quantity, productID }) => ({
+    price,
+    quantity,
+    productID,
+  }));
+
+  await prisma.order.create({
+    data: {
+      totalPrice: total,
+      paymentMethod: "COD",
+      paymentStatus: "PAYMENT_UNPAID",
+      status: "PENDING",
+      receiverAddress,
+      receiverName,
+      receiverPhone,
+      userID,
+      orderDetails: {
+        create: orderDetails,
+      },
+    },
+  });
+};
+
+const deleteCartDetailAndCart = async (cartID) => {
+  await prisma.cartDetail.deleteMany({
+    where: {
+      cartID: cartID,
+    },
+  });
+
+  await prisma.cart.delete({
+    where: {
+      id: cartID,
+    },
+  });
+};
+
 export {
   getCartFromUserID,
   createNewCart,
@@ -182,4 +239,6 @@ export {
   deleteCartByID,
   updateCartDetail,
   updateQuantityCart,
+  createOrderAndOrderDetail,
+  deleteCartDetailAndCart,
 };

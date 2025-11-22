@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import {
+  createOrderAndOrderDetail,
   decreaseSumCart,
   deleteCartByID,
+  deleteCartDetailAndCart,
   deleteCartDetailByID,
   getCartDetailsByCartIDJoinProduct,
   getCartDetailsByID,
@@ -100,9 +102,33 @@ const postConfirmCart = async (req: Request, res: Response) => {
   res.redirect("/checkout");
 };
 
+const postCreateOrder = async (req: Request, res: Response) => {
+  const { receiverName, receiverAddress, receiverPhone, total } = req.body;
+  const user = req.user as any;
+  const userID = user.id;
+  console.log(req.body);
+
+  // Tạo Order - OrderDetail
+  await createOrderAndOrderDetail(
+    receiverName,
+    receiverAddress,
+    receiverPhone,
+    +total,
+    userID
+  );
+
+  // Xóa CartDetail - Cart
+  const cart = await getCartFromUserID(userID);
+  const cartID = cart.id;
+  await deleteCartDetailAndCart(cartID);
+
+  res.render("client/cart/thankyou.ejs");
+};
+
 export {
   getCartPage,
   postDeleteCartDetailByID,
   getCheckOutPage,
   postConfirmCart,
+  postCreateOrder,
 };

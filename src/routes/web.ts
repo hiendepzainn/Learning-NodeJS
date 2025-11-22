@@ -20,6 +20,7 @@ import {
   getCheckOutPage,
   postDeleteCartDetailByID,
   postConfirmCart,
+  postCreateOrder,
 } from "../controllers/client/cart.controller";
 
 export const initRouters = (app: Express) => {
@@ -35,6 +36,7 @@ export const initRouters = (app: Express) => {
   app.post("/deleteCartDetail/:id", postDeleteCartDetailByID);
   app.get("/checkout", getCheckOutPage);
   app.post("/confirm-cart", postConfirmCart);
+  app.post("/create-order", postCreateOrder);
 
   // Authentication
   app.get("/login", checkLogin, getLoginPage);
