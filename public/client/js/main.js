@@ -161,6 +161,10 @@
     const input = button.parent().parent().find("input");
     input.val(newVal);
 
+    // increase/decrease quantity at "/product/:id"
+    const inputQuantity = document.getElementById("quantity-input");
+    inputQuantity.value = newVal;
+
     //get price
     const price = input.attr("data-cart-detail-price");
     const id = input.attr("data-cart-detail-id");

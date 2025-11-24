@@ -38,4 +38,31 @@ const postAddProductToCart = async (req: Request, res: Response) => {
   res.redirect("/");
 };
 
-export { getProductPageClient, postAddProductToCart };
+const postAddProductWithQuantity = async (req: Request, res: Response) => {
+  const user = req.user as any;
+  if (!user) {
+    return res.redirect("/login");
+  }
+
+  const { productID, quantity } = req.body;
+  const userID = user.id;
+
+  const cart = await getCartFromUserID(userID);
+
+  // CREATE
+  if (!cart) {
+    await createNewCart(+quantity, userID, +productID);
+    return res.redirect("/");
+  }
+
+  // UPDATE
+  await updateSumOfCart(+quantity, userID);
+  await upsertCartDetail(+quantity, userID, +productID);
+  res.redirect("/");
+};
+
+export {
+  getProductPageClient,
+  postAddProductToCart,
+  postAddProductWithQuantity,
+};

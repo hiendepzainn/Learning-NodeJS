@@ -3,6 +3,7 @@ import { getHomePage } from "../controllers/user.controller";
 import {
   getProductPageClient,
   postAddProductToCart,
+  postAddProductWithQuantity,
 } from "../controllers/client/product.controller";
 import {
   getLoginPage,
@@ -32,6 +33,7 @@ export const initRouters = (app: Express) => {
 
   // Product (client)
   app.post("/addProductToCart/:id", postAddProductToCart);
+  app.post("/add-product-to-cart-with-quantity", postAddProductWithQuantity);
 
   // Cart (client)
   app.get("/cart", getCartPage);
