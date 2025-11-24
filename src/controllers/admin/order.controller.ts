@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
-import { getOrderDetailsWithProductByOrderID } from "../../services/order.service";
+import {
+  getOrderDetailsWithProductByOrderID,
+  getOrdersWithOrderDetailWithProductByUserID,
+} from "../../services/order.service";
 
 const getViewOrder = async (req: Request, res: Response) => {
   const orderID: number = Number(req.params.id);
@@ -11,4 +14,19 @@ const getViewOrder = async (req: Request, res: Response) => {
   });
 };
 
-export { getViewOrder };
+const getOrderHistoryPage = async (req: Request, res: Response) => {
+  const user = req.user as any;
+  if (!user) {
+    res.redirect("/login");
+  }
+
+  const userID = user.id;
+  const orders = (await getOrdersWithOrderDetailWithProductByUserID(
+    userID
+  )) as any;
+  res.render("client/order/history.ejs", {
+    orders: orders ?? [],
+  });
+};
+
+export { getViewOrder, getOrderHistoryPage };

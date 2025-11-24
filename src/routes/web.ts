@@ -23,6 +23,7 @@ import {
   postCreateOrder,
   getThankyouPage,
 } from "../controllers/client/cart.controller";
+import { getOrderHistoryPage } from "../controllers/admin/order.controller";
 
 export const initRouters = (app: Express) => {
   // CLIENT
@@ -39,6 +40,7 @@ export const initRouters = (app: Express) => {
   app.post("/confirm-cart", postConfirmCart);
   app.post("/create-order", postCreateOrder);
   app.get("/thankyou", getThankyouPage);
+  app.get("/order-history", getOrderHistoryPage);
 
   // Authentication
   app.get("/login", checkLogin, getLoginPage);

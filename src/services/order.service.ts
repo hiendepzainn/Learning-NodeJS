@@ -18,4 +18,25 @@ const getOrderDetailsWithProductByOrderID = async (ID) => {
   return orderDetails;
 };
 
-export { getAllOrderWithUser, getOrderDetailsWithProductByOrderID };
+const getOrdersWithOrderDetailWithProductByUserID = async (userID) => {
+  const orders = await prisma.order.findMany({
+    where: {
+      userID: userID,
+    },
+    include: {
+      orderDetails: {
+        include: {
+          product: true,
+        },
+      },
+    },
+  });
+
+  return orders;
+};
+
+export {
+  getAllOrderWithUser,
+  getOrderDetailsWithProductByOrderID,
+  getOrdersWithOrderDetailWithProductByUserID,
+};
