@@ -163,7 +163,9 @@
 
     // increase/decrease quantity at "/product/:id"
     const inputQuantity = document.getElementById("quantity-input");
-    inputQuantity.value = newVal;
+    if (inputQuantity) {
+      inputQuantity.value = newVal;
+    }
 
     //get price
     const price = input.attr("data-cart-detail-price");
