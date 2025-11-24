@@ -2,9 +2,11 @@ import { Request, Response } from "express";
 import { getAllUsers } from "../../services/user.service";
 import { getAllProducts } from "../../services/product.service";
 import { getAllOrderWithUser } from "../../services/order.service";
+import { getCountInforDashboard } from "../../services/dashboard.service";
 
-const getDashboardPage = (req: Request, res: Response) => {
-  return res.render("admin/dashboard/show.ejs");
+const getDashboardPage = async (req: Request, res: Response) => {
+  const countInfors = await getCountInforDashboard();
+  return res.render("admin/dashboard/show.ejs", { infor: countInfors });
 };
 
 const getUserPage = async (req: Request, res: Response) => {
