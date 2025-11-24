@@ -20,6 +20,7 @@ import {
   postDeleteProduct,
   postUpdateProduct,
 } from "../controllers/admin/product.controller";
+import { getViewOrder } from "../controllers/admin/order.controller";
 
 const adminRouter = Router();
 // ADMIN
@@ -59,5 +60,6 @@ adminRouter.post(
 
 // ORDER module
 adminRouter.get("/order", getOrderPage);
+adminRouter.get("/view-order/:id", getViewOrder);
 
 export default adminRouter;
