@@ -97,6 +97,16 @@ const handleUpdateUser = async (
   });
 };
 
+const getUsersByPage = async (page: number) => {
+  const pageSize = 4;
+  const users = prisma.user.findMany({
+    skip: (page - 1) * pageSize,
+    take: pageSize,
+  });
+
+  return users;
+};
+
 export {
   handleCreateUser,
   getAllUsers,
@@ -106,4 +116,5 @@ export {
   getAllRoles,
   comparePassword,
   getUserAndRoleByID,
+  getUsersByPage,
 };

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAllUsers } from "../../services/user.service";
+import { getAllUsers, getUsersByPage } from "../../services/user.service";
 import { getAllProducts } from "../../services/product.service";
 import { getAllOrderWithUser } from "../../services/order.service";
 import { getCountInforDashboard } from "../../services/dashboard.service";
@@ -10,7 +10,14 @@ const getDashboardPage = async (req: Request, res: Response) => {
 };
 
 const getUserPage = async (req: Request, res: Response) => {
-  const users = await getAllUsers();
+  const { page } = req.query;
+  let currentPage = 1;
+
+  if (+page > 0) {
+    currentPage = +page;
+  }
+  const users = await getUsersByPage(currentPage);
+
   return res.render("admin/user/show.ejs", {
     listUsers: users,
   });
