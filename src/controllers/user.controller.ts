@@ -7,13 +7,28 @@ import {
   handleUpdateUser,
 } from "../services/user.service";
 
-import { getAllProducts } from "../services/product.service";
+import {
+  getProductsByPageClient,
+  getTotalPageProductClient,
+} from "../services/product.service";
 
 const getHomePage = async (req: Request, res: Response) => {
-  const products = await getAllProducts();
+  const { page } = req.query;
+  let currentPage;
+  if (page) {
+    currentPage = +page > 0 ? +page : 1;
+  } else {
+    currentPage = 1;
+  }
+
+  const products = await getProductsByPageClient(currentPage, 8);
+  const totalPage = await getTotalPageProductClient(8);
+
   console.log(">>> Current user: ", req.user);
   return res.render("client/home/show.ejs", {
     listProducts: products,
+    page: currentPage,
+    totalPage: totalPage,
   });
 };
 

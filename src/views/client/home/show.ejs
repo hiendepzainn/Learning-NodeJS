@@ -148,6 +148,35 @@
     </div>
     <!-- Fruits Shop End-->
 
+    <div class="pagination d-flex justify-content-center mt-5">
+      <li class="<%= page === 1 ? 'disabled page-item' : 'page-item' %>">
+        <a
+          class="page-link"
+          href="/?page=<%= page - 1  %>"
+          aria-label="Previous"
+        >
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <% for(var i=1; i <=totalPage; i++) {%>
+      <li class="page-item">
+        <a
+          class="<%= page === i ? 'active page-link' : 'page-link' %>"
+          href="/?page=<%= i  %>"
+        >
+          <%= i %>
+        </a>
+      </li>
+      <% } %>
+      <li
+        class="<%= page === totalPage ? 'disabled page-item' : 'page-item' %>"
+      >
+        <a class="page-link" href="/?page=<%= page + 1  %>" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </div>
+
     <!-- Footer Start -->
     <%- include('../layout/footer.ejs'); %>
     <!-- Footer End -->

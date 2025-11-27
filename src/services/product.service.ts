@@ -92,6 +92,22 @@ const getTotalPageProduct = async () => {
   return totalPage;
 };
 
+const getProductsByPageClient = async (page: number, pageSize: number) => {
+  const products = await prisma.product.findMany({
+    skip: (page - 1) * pageSize,
+    take: pageSize,
+  });
+
+  return products;
+};
+
+const getTotalPageProductClient = async (pageSize: number) => {
+  const countProducts = await prisma.product.count();
+  const totalPage = Math.ceil(countProducts / pageSize);
+
+  return totalPage;
+};
+
 export {
   handleCreateProduct,
   getAllProducts,
@@ -100,4 +116,6 @@ export {
   handleUpdateProduct,
   getProductsByPage,
   getTotalPageProduct,
+  getProductsByPageClient,
+  getTotalPageProductClient,
 };
