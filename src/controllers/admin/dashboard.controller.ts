@@ -22,7 +22,7 @@ const getUserPage = async (req: Request, res: Response) => {
   return res.render("admin/user/show.ejs", {
     listUsers: users,
     totalPages: totalPages,
-    page: +page,
+    page: +currentPage,
   });
 };
 
