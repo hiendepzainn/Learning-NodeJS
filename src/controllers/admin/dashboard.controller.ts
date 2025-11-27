@@ -4,7 +4,10 @@ import {
   getProductsByPage,
   getTotalPageProduct,
 } from "../../services/product.service";
-import { getAllOrderWithUser } from "../../services/order.service";
+import {
+  getOrdersByPage,
+  getTotalPageOrder,
+} from "../../services/order.service";
 import { getCountInforDashboard } from "../../services/dashboard.service";
 
 const getDashboardPage = async (req: Request, res: Response) => {
@@ -30,9 +33,20 @@ const getUserPage = async (req: Request, res: Response) => {
 };
 
 const getOrderPage = async (req: Request, res: Response) => {
-  const listOrders = await getAllOrderWithUser();
+  const { page } = req.query;
+  let currentPage;
+  if (page) {
+    currentPage = +page <= 0 ? 1 : +page;
+  } else {
+    currentPage = 1;
+  }
+
+  const totalPage = await getTotalPageOrder();
+  const listOrders = await getOrdersByPage(currentPage);
   return res.render("admin/order/show.ejs", {
     listOrders: listOrders,
+    totalPage: totalPage,
+    page: currentPage,
   });
 };
 
