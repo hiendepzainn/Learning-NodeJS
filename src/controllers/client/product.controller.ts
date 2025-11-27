@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import { getProductByID } from "../../services/product.service";
+import {
+  getProductByID,
+  getProductsByPageClient,
+  getTotalPageProductClient,
+} from "../../services/product.service";
 import {
   createNewCart,
   getCartFromUserID,
@@ -62,7 +66,22 @@ const postAddProductWithQuantity = async (req: Request, res: Response) => {
 };
 
 const getProductsPage = async (req: Request, res: Response) => {
-  res.render("client/product/products.ejs");
+  const { page } = req.query;
+  let currentPage;
+  if (page) {
+    currentPage = +page > 0 ? +page : 1;
+  } else {
+    currentPage = 1;
+  }
+
+  const products = await getProductsByPageClient(currentPage, 6);
+  const totalPage = await getTotalPageProductClient(6);
+
+  return res.render("client/product/products.ejs", {
+    listProducts: products,
+    page: currentPage,
+    totalPage: totalPage,
+  });
 };
 
 export {

@@ -53,14 +53,291 @@
     <%- include('../layout/header.ejs'); %>
     <!-- Navbar End -->
 
-    <h2>hehehe</h2>
-    <h2>hehehe</h2>
-    <h2>hehehe</h2>
-    <h2>hehehe</h2>
-    <h2>hehehe</h2>
-    <h2>hehehe</h2>
-    <h2>hehehe</h2>
-    <h2>hehehe</h2>
+    <!-- main Start -->
+
+    <div style="margin-top: 70px" class="container-fluid fruite py-5">
+      <div class="container py-5">
+        <div class="tab-class">
+          <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade show p-0 active">
+              <div class="row g-4">
+                <div class="col-4">
+                  <div style="margin-bottom: 30px">
+                    <h6>Hãng sản xuất</h6>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkDefault"
+                      />
+                      <label class="form-check-label" for="checkDefault">
+                        Canon
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkChecked"
+                      />
+                      <label class="form-check-label" for="checkChecked">
+                        Nikon
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkChecked"
+                      />
+                      <label class="form-check-label" for="checkChecked">
+                        Sony
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkChecked"
+                      />
+                      <label class="form-check-label" for="checkChecked">
+                        Fujifilm
+                      </label>
+                    </div>
+                  </div>
+                  <div style="margin-bottom: 30px">
+                    <h6>Đối tượng sử dụng</h6>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkDefault"
+                      />
+                      <label class="form-check-label" for="checkDefault">
+                        Beginner
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkChecked"
+                      />
+                      <label class="form-check-label" for="checkChecked">
+                        Intermediate
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkChecked"
+                      />
+                      <label class="form-check-label" for="checkChecked">
+                        Advanced
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkChecked"
+                      />
+                      <label class="form-check-label" for="checkChecked">
+                        Professional
+                      </label>
+                    </div>
+                  </div>
+                  <div style="margin-bottom: 30px">
+                    <h6>Mức giá</h6>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkDefault"
+                      />
+                      <label class="form-check-label" for="checkDefault">
+                        Dưới 10 triệu
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkChecked"
+                      />
+                      <label class="form-check-label" for="checkChecked">
+                        Từ 10 - 15 triệu
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkChecked"
+                      />
+                      <label class="form-check-label" for="checkChecked">
+                        Từ 15 - 25 triệu
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkChecked"
+                      />
+                      <label class="form-check-label" for="checkChecked">
+                        Trên 25 triệu
+                      </label>
+                    </div>
+                  </div>
+                  <div style="margin-bottom: 30px">
+                    <h6>Sắp xếp</h6>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="radioDefault"
+                        id="radioDefault1"
+                      />
+                      <label class="form-check-label" for="radioDefault1">
+                        Giá tăng dần
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="radioDefault"
+                        id="radioDefault2"
+                        checked
+                      />
+                      <label class="form-check-label" for="radioDefault2">
+                        Giá giảm dần
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="radioDefault"
+                        id="radioDefault3"
+                      />
+                      <label class="form-check-label" for="radioDefault3">
+                        Không sắp xếp
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="row g-4">
+                    <% listProducts.forEach(function(product) { %>
+                    <div class="col-4">
+                      <div class="rounded position-relative fruite-item">
+                        <div class="fruite-img">
+                          <img
+                            src="images/product/<%= product.image %>"
+                            class="img-fluid w-100 rounded-top"
+                            alt=""
+                          />
+                        </div>
+                        <div
+                          class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                          style="top: 10px; left: 10px"
+                        >
+                          Còn hàng
+                        </div>
+                        <div
+                          class="p-4 border border-secondary border-top-0 rounded-bottom"
+                        >
+                          <a href="/product/<%= product.id %>"
+                            ><h4><%= product.name %></h4></a
+                          >
+                          <p><%= product.shortDesc %></p>
+                          <div>
+                            <p class="text-dark fs-5 fw-bold mb-3">
+                              <%= new Intl.NumberFormat('vi-VN', { style:
+                              'currency' , currency: 'VND'
+                              }).format(product.price) %>
+                            </p>
+                            <form
+                              method="post"
+                              action="/addProductToCart/<%=product.id%>"
+                            >
+                              <button
+                                class="btn border border-secondary rounded-pill px-3 text-primary"
+                                type="submit"
+                              >
+                                <i
+                                  class="fa fa-shopping-bag me-2 text-primary"
+                                ></i
+                                >Add to cart
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <% }); %>
+                  </div>
+
+                  <!-- PAGINATION start  -->
+                  <div class="pagination d-flex justify-content-center mt-5">
+                    <li
+                      class="<%= page === 1 ? 'disabled page-item' : 'page-item' %>"
+                    >
+                      <a
+                        class="page-link"
+                        href="/products?page=<%= page - 1  %>"
+                        aria-label="Previous"
+                      >
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <% for(var i=1; i <=totalPage; i++) {%>
+                    <li class="page-item">
+                      <a
+                        class="<%= page === i ? 'active page-link' : 'page-link' %>"
+                        href="/products?page=<%= i  %>"
+                      >
+                        <%= i %>
+                      </a>
+                    </li>
+                    <% } %>
+                    <li
+                      class="<%= page === totalPage ? 'disabled page-item' : 'page-item' %>"
+                    >
+                      <a
+                        class="page-link"
+                        href="/products?page=<%= page + 1  %>"
+                        aria-label="Next"
+                      >
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </div>
+                  <!-- PAGINATION end  -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- main End -->
 
     <!-- Footer Start -->
     <%- include('../layout/footer.ejs'); %>
