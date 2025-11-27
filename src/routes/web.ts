@@ -2,6 +2,7 @@ import { Express } from "express";
 import { getHomePage } from "../controllers/user.controller";
 import {
   getProductPageClient,
+  getProductsPage,
   postAddProductToCart,
   postAddProductWithQuantity,
 } from "../controllers/client/product.controller";
@@ -30,6 +31,7 @@ export const initRouters = (app: Express) => {
   // CLIENT
   app.get("/", getHomePage);
   app.get("/product/:id", getProductPageClient);
+  app.get("/products", getProductsPage);
 
   // Product (client)
   app.post("/addProductToCart/:id", postAddProductToCart);

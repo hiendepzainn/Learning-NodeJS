@@ -61,8 +61,13 @@ const postAddProductWithQuantity = async (req: Request, res: Response) => {
   res.redirect("/");
 };
 
+const getProductsPage = async (req: Request, res: Response) => {
+  res.render("client/product/products.ejs");
+};
+
 export {
   getProductPageClient,
   postAddProductToCart,
   postAddProductWithQuantity,
+  getProductsPage,
 };
