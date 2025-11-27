@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { getTotalPagesUser, getUsersByPage } from "../../services/user.service";
-import { getAllProducts } from "../../services/product.service";
+import {
+  getProductsByPage,
+  getTotalPageProduct,
+} from "../../services/product.service";
 import { getAllOrderWithUser } from "../../services/order.service";
 import { getCountInforDashboard } from "../../services/dashboard.service";
 
@@ -34,9 +37,21 @@ const getOrderPage = async (req: Request, res: Response) => {
 };
 
 const getProductPage = async (req: Request, res: Response) => {
-  const products = await getAllProducts();
+  const { page } = req.query;
+  let currentPage;
+  if (page) {
+    currentPage = +page <= 0 ? 1 : +page;
+  } else {
+    currentPage = 1;
+  }
+
+  const products = await getProductsByPage(currentPage);
+  const totalPage = await getTotalPageProduct();
+
   return res.render("admin/product/show.ejs", {
     listProducts: products,
+    totalPage: totalPage,
+    page: currentPage,
   });
 };
 
