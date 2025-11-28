@@ -77,10 +77,14 @@ const getProductsPage = async (req: Request, res: Response) => {
   const products = await getProductsByPageClient(currentPage, 6);
   const totalPage = await getTotalPageProductClient(6);
 
-  return res.render("client/product/products.ejs", {
-    listProducts: products,
-    page: currentPage,
-    totalPage: totalPage,
+  // return res.render("client/product/products.ejs", {
+  //   listProducts: products,
+  //   page: currentPage,
+  //   totalPage: totalPage,
+  // });
+
+  res.status(200).json({
+    data: products,
   });
 };
 
