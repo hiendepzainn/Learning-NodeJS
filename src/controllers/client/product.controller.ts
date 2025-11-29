@@ -10,6 +10,7 @@ import {
   updateSumOfCart,
   upsertCartDetail,
 } from "../../services/cart.service";
+import { getProductsFilter } from "../../services/product.filter";
 
 const getProductPageClient = async (req: Request, res: Response) => {
   const id: number = Number(req.params.id);
@@ -74,7 +75,7 @@ const getProductsPage = async (req: Request, res: Response) => {
     currentPage = 1;
   }
 
-  const products = await getProductsByPageClient(currentPage, 6);
+  // const products = await getProductsByPageClient(currentPage, 6);
   const totalPage = await getTotalPageProductClient(6);
 
   // return res.render("client/product/products.ejs", {
@@ -82,6 +83,14 @@ const getProductsPage = async (req: Request, res: Response) => {
   //   page: currentPage,
   //   totalPage: totalPage,
   // });
+
+  const { factory, price, sort } = req.query;
+
+  const products = await getProductsFilter(
+    String(factory),
+    String(price),
+    String(sort)
+  );
 
   res.status(200).json({
     data: products,
