@@ -2,6 +2,7 @@ import { prisma } from "../config/client";
 
 const getProductsFilter = async (
   factory: string,
+  target: string,
   price: string,
   sort: string
 ) => {
@@ -13,6 +14,13 @@ const getProductsFilter = async (
     const listFactory = factory.split(",");
     where.factory = {};
     where.factory.in = listFactory;
+  }
+
+  //target
+  if (target !== "undefined") {
+    const listTarget = target.split(",");
+    where.target = {};
+    where.target.in = listTarget;
   }
 
   //price range
@@ -63,7 +71,7 @@ const getProductsFilter = async (
   }
 
   //sort
-  if (sort !== "undefined") {
+  if (sort !== "undefined" && sort !== "none") {
     orderBy.price = sort;
   }
 

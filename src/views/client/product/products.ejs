@@ -60,277 +60,241 @@
         <div class="tab-class">
           <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
-              <div class="row g-4">
-                <div class="col-4">
-                  <div style="margin-bottom: 30px">
-                    <h6>Hãng sản xuất</h6>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="checkDefault"
-                      />
-                      <label class="form-check-label" for="checkDefault">
-                        Canon
-                      </label>
+              <form action="/products" method="get">
+                <div class="row g-4">
+                  <div class="col-4">
+                    <div style="margin-bottom: 30px">
+                      <h6>Hãng sản xuất</h6>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                        value="canon" id="checkCanon" name="factory" <%=
+                        listFactory.includes("canon") ? `checked` : `` %> />
+                        <label class="form-check-label" for="checkCanon">
+                          Canon
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                        value="nikon" id="checkNikon" name="factory" <%=
+                        listFactory.includes("nikon") ? `checked` : `` %> />
+                        <label class="form-check-label" for="checkNikon">
+                          Nikon
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                        value="sony" id="checkSony" name="factory" <%=
+                        listFactory.includes("sony") ? `checked` : `` %> />
+                        <label class="form-check-label" for="checkSony">
+                          Sony
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                        value="fujifilm" id="checkFuji" name="factory" <%=
+                        listFactory.includes("fujifilm") ? `checked` : `` %> />
+                        <label class="form-check-label" for="checkFuji">
+                          Fujifilm
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="checkChecked"
-                      />
-                      <label class="form-check-label" for="checkChecked">
-                        Nikon
-                      </label>
+                    <div style="margin-bottom: 30px">
+                      <h6>Đối tượng sử dụng</h6>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                        value="beginner" id="checkBeginner" name="target" <%=
+                        listTarget.includes("beginner") ? `checked` : `` %> />
+                        <label class="form-check-label" for="checkBeginner">
+                          Beginner
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                        value="intermediate" id="checkInterm" name="target" <%=
+                        listTarget.includes("intermediate") ? `checked` : `` %>
+                        />
+                        <label class="form-check-label" for="checkInterm">
+                          Intermediate
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                        value="advanced" id="checkAdvanced" name="target" <%=
+                        listTarget.includes("advanced") ? `checked` : `` %> />
+                        <label class="form-check-label" for="checkAdvanced">
+                          Advanced
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                        value="professional" id="checkPro" name="target" <%=
+                        listTarget.includes("professional") ? `checked` : `` %>
+                        />
+                        <label class="form-check-label" for="checkPro">
+                          Professional
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="checkChecked"
-                      />
-                      <label class="form-check-label" for="checkChecked">
-                        Sony
-                      </label>
+                    <div style="margin-bottom: 30px">
+                      <h6>Mức giá</h6>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                        value="duoi-10-trieu" id="duoi-10-trieu" name="price"
+                        <%= listPrice.includes("duoi-10-trieu") ? `checked` : ``
+                        %> />
+                        <label class="form-check-label" for="duoi-10-trieu">
+                          Dưới 10 triệu
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                        value="10-toi-15-trieu" id="10-toi-15-trieu"
+                        name="price" <%= listPrice.includes("10-toi-15-trieu") ?
+                        `checked` : `` %> />
+                        <label class="form-check-label" for="10-toi-15-trieu">
+                          Từ 10 - 15 triệu
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                        value="15-toi-25-trieu" id="15-toi-25-trieu"
+                        name="price" <%= listPrice.includes("15-toi-25-trieu") ?
+                        `checked` : `` %> />
+                        <label class="form-check-label" for="15-toi-25-trieu">
+                          Từ 15 - 25 triệu
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                        value="tren-25-trieu" id="tren-25-trieu" name="price"
+                        <%= listPrice.includes("tren-25-trieu") ? `checked` : ``
+                        %> />
+                        <label class="form-check-label" for="tren-25-trieu">
+                          Trên 25 triệu
+                        </label>
+                      </div>
                     </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="checkChecked"
-                      />
-                      <label class="form-check-label" for="checkChecked">
-                        Fujifilm
-                      </label>
+                    <div style="margin-bottom: 30px">
+                      <h6>Sắp xếp</h6>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sort"
+                        id="radioDefault1" value="asc" <%= sort === "asc" ?
+                        `checked` : `` %> />
+                        <label class="form-check-label" for="radioDefault1">
+                          Giá tăng dần
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sort"
+                        id="radioDefault2" value="desc" <%= sort === "desc" ?
+                        `checked` : `` %> />
+                        <label class="form-check-label" for="radioDefault2">
+                          Giá giảm dần
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sort"
+                        id="radioDefault3" value="none" <%= sort === "none" ?
+                        `checked` : `` %> />
+                        <label class="form-check-label" for="radioDefault3">
+                          Không sắp xếp
+                        </label>
+                      </div>
                     </div>
+                    <button type="submit">tim kiem</button>
                   </div>
-                  <div style="margin-bottom: 30px">
-                    <h6>Đối tượng sử dụng</h6>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="checkDefault"
-                      />
-                      <label class="form-check-label" for="checkDefault">
-                        Beginner
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="checkChecked"
-                      />
-                      <label class="form-check-label" for="checkChecked">
-                        Intermediate
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="checkChecked"
-                      />
-                      <label class="form-check-label" for="checkChecked">
-                        Advanced
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="checkChecked"
-                      />
-                      <label class="form-check-label" for="checkChecked">
-                        Professional
-                      </label>
-                    </div>
-                  </div>
-                  <div style="margin-bottom: 30px">
-                    <h6>Mức giá</h6>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="checkDefault"
-                      />
-                      <label class="form-check-label" for="checkDefault">
-                        Dưới 10 triệu
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="checkChecked"
-                      />
-                      <label class="form-check-label" for="checkChecked">
-                        Từ 10 - 15 triệu
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="checkChecked"
-                      />
-                      <label class="form-check-label" for="checkChecked">
-                        Từ 15 - 25 triệu
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="checkChecked"
-                      />
-                      <label class="form-check-label" for="checkChecked">
-                        Trên 25 triệu
-                      </label>
-                    </div>
-                  </div>
-                  <div style="margin-bottom: 30px">
-                    <h6>Sắp xếp</h6>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="radioDefault"
-                        id="radioDefault1"
-                      />
-                      <label class="form-check-label" for="radioDefault1">
-                        Giá tăng dần
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="radioDefault"
-                        id="radioDefault2"
-                        checked
-                      />
-                      <label class="form-check-label" for="radioDefault2">
-                        Giá giảm dần
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="radioDefault"
-                        id="radioDefault3"
-                      />
-                      <label class="form-check-label" for="radioDefault3">
-                        Không sắp xếp
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-8">
-                  <div class="row g-4">
-                    <% listProducts.forEach(function(product) { %>
-                    <div class="col-4">
-                      <div class="rounded position-relative fruite-item">
-                        <div class="fruite-img">
-                          <img
-                            src="images/product/<%= product.image %>"
-                            class="img-fluid w-100 rounded-top"
-                            alt=""
-                          />
-                        </div>
-                        <div
-                          class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                          style="top: 10px; left: 10px"
-                        >
-                          Còn hàng
-                        </div>
-                        <div
-                          class="p-4 border border-secondary border-top-0 rounded-bottom"
-                        >
-                          <a href="/product/<%= product.id %>"
-                            ><h4><%= product.name %></h4></a
+
+                  <div class="col-8">
+                    <div class="row g-4">
+                      <% listProducts.forEach(function(product) { %>
+                      <div class="col-4">
+                        <div class="rounded position-relative fruite-item">
+                          <div class="fruite-img">
+                            <img
+                              src="images/product/<%= product.image %>"
+                              class="img-fluid w-100 rounded-top"
+                              alt=""
+                            />
+                          </div>
+                          <div
+                            class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                            style="top: 10px; left: 10px"
                           >
-                          <p><%= product.shortDesc %></p>
-                          <div>
-                            <p class="text-dark fs-5 fw-bold mb-3">
-                              <%= new Intl.NumberFormat('vi-VN', { style:
-                              'currency' , currency: 'VND'
-                              }).format(product.price) %>
-                            </p>
-                            <form
-                              method="post"
-                              action="/addProductToCart/<%=product.id%>"
+                            Còn hàng
+                          </div>
+                          <div
+                            class="p-4 border border-secondary border-top-0 rounded-bottom"
+                          >
+                            <a href="/product/<%= product.id %>"
+                              ><h4><%= product.name %></h4></a
                             >
-                              <button
-                                class="btn border border-secondary rounded-pill px-3 text-primary"
-                                type="submit"
+                            <p><%= product.shortDesc %></p>
+                            <div>
+                              <p class="text-dark fs-5 fw-bold mb-3">
+                                <%= new Intl.NumberFormat('vi-VN', { style:
+                                'currency' , currency: 'VND'
+                                }).format(product.price) %>
+                              </p>
+                              <form
+                                method="post"
+                                action="/addProductToCart/<%=product.id%>"
                               >
-                                <i
-                                  class="fa fa-shopping-bag me-2 text-primary"
-                                ></i
-                                >Add to cart
-                              </button>
-                            </form>
+                                <button
+                                  class="btn border border-secondary rounded-pill px-3 text-primary"
+                                  type="submit"
+                                >
+                                  <i
+                                    class="fa fa-shopping-bag me-2 text-primary"
+                                  ></i
+                                  >Add to cart
+                                </button>
+                              </form>
+                            </div>
                           </div>
                         </div>
                       </div>
+                      <% }); %>
                     </div>
-                    <% }); %>
-                  </div>
 
-                  <!-- PAGINATION start  -->
-                  <div class="pagination d-flex justify-content-center mt-5">
-                    <li
-                      class="<%= page === 1 ? 'disabled page-item' : 'page-item' %>"
-                    >
-                      <a
-                        class="page-link"
-                        href="/products?page=<%= page - 1  %>"
-                        aria-label="Previous"
+                    <!-- PAGINATION start  -->
+                    <div class="pagination d-flex justify-content-center mt-5">
+                      <li
+                        class="<%= page === 1 ? 'disabled page-item' : 'page-item' %>"
                       >
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <% for(var i=1; i <=totalPage; i++) {%>
-                    <li class="page-item">
-                      <a
-                        class="<%= page === i ? 'active page-link' : 'page-link' %>"
-                        href="/products?page=<%= i  %>"
+                        <a
+                          class="page-link"
+                          href="/products?page=<%= page - 1  %>"
+                          aria-label="Previous"
+                        >
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <% for(var i=1; i <=totalPage; i++) {%>
+                      <li class="page-item">
+                        <a
+                          class="<%= page === i ? 'active page-link' : 'page-link' %>"
+                          href="/products?page=<%= i  %>"
+                        >
+                          <%= i %>
+                        </a>
+                      </li>
+                      <% } %>
+                      <li
+                        class="<%= page === totalPage ? 'disabled page-item' : 'page-item' %>"
                       >
-                        <%= i %>
-                      </a>
-                    </li>
-                    <% } %>
-                    <li
-                      class="<%= page === totalPage ? 'disabled page-item' : 'page-item' %>"
-                    >
-                      <a
-                        class="page-link"
-                        href="/products?page=<%= page + 1  %>"
-                        aria-label="Next"
-                      >
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
+                        <a
+                          class="page-link"
+                          href="/products?page=<%= page + 1  %>"
+                          aria-label="Next"
+                        >
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </div>
+                    <!-- PAGINATION end  -->
                   </div>
-                  <!-- PAGINATION end  -->
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

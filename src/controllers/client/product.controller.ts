@@ -84,16 +84,29 @@ const getProductsPage = async (req: Request, res: Response) => {
   //   totalPage: totalPage,
   // });
 
-  const { factory, price, sort } = req.query;
+  const { factory, target, price, sort } = req.query;
+
+  console.log(String(req.query.factory));
 
   const products = await getProductsFilter(
     String(factory),
+    String(target),
     String(price),
     String(sort)
   );
 
-  res.status(200).json({
-    data: products,
+  // res.status(200).json({
+  //   data: products,
+  // });
+
+  return res.render("client/product/products.ejs", {
+    listProducts: products,
+    page: currentPage,
+    totalPage: totalPage,
+    listFactory: factory ? factory : [],
+    listTarget: target ? target : [],
+    listPrice: price ? price : [],
+    sort: sort ? sort : "none",
   });
 };
 
