@@ -257,6 +257,11 @@
                     </div>
 
                     <!-- PAGINATION start  -->
+                    <% if (listProducts.length === 0) { %>
+                    <h6 style="margin-top: 40px; margin-left: 50px">
+                      Rất tiếc, không có sản phẩm nào phù hợp tiêu chí!
+                    </h6>
+                    <% } else { %>
                     <div class="pagination d-flex justify-content-center mt-5">
                       <li
                         class="<%= page === 1 ? 'disabled page-item' : 'page-item' %>"
@@ -291,6 +296,8 @@
                         </a>
                       </li>
                     </div>
+                    <% } %>
+
                     <!-- PAGINATION end  -->
                   </div>
                 </div>
