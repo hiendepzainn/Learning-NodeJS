@@ -60,9 +60,9 @@
         <div class="tab-class">
           <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
-              <form action="/products" method="get">
-                <div class="row g-4">
-                  <div class="col-4">
+              <div class="row g-4">
+                <div class="col-4">
+                  <form action="/products" method="get">
                     <div style="margin-bottom: 30px">
                       <h6>Hãng sản xuất</h6>
                       <div class="form-check">
@@ -202,106 +202,106 @@
                       </div>
                     </div>
                     <button type="submit">tim kiem</button>
-                  </div>
+                  </form>
+                </div>
 
-                  <div class="col-8">
-                    <div class="row g-4">
-                      <% listProducts.forEach(function(product) { %>
-                      <div class="col-4">
-                        <div class="rounded position-relative fruite-item">
-                          <div class="fruite-img">
-                            <img
-                              src="images/product/<%= product.image %>"
-                              class="img-fluid w-100 rounded-top"
-                              alt=""
-                            />
-                          </div>
-                          <div
-                            class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                            style="top: 10px; left: 10px"
+                <div class="col-8">
+                  <div class="row g-4">
+                    <% listProducts.forEach(function(product) { %>
+                    <div class="col-4">
+                      <div class="rounded position-relative fruite-item">
+                        <div class="fruite-img">
+                          <img
+                            src="images/product/<%= product.image %>"
+                            class="img-fluid w-100 rounded-top"
+                            alt=""
+                          />
+                        </div>
+                        <div
+                          class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                          style="top: 10px; left: 10px"
+                        >
+                          Còn hàng
+                        </div>
+                        <div
+                          class="p-4 border border-secondary border-top-0 rounded-bottom"
+                        >
+                          <a href="/product/<%= product.id %>"
+                            ><h4><%= product.name %></h4></a
                           >
-                            Còn hàng
-                          </div>
-                          <div
-                            class="p-4 border border-secondary border-top-0 rounded-bottom"
-                          >
-                            <a href="/product/<%= product.id %>"
-                              ><h4><%= product.name %></h4></a
+                          <p><%= product.shortDesc %></p>
+                          <div>
+                            <p class="text-dark fs-5 fw-bold mb-3">
+                              <%= new Intl.NumberFormat('vi-VN', { style:
+                              'currency' , currency: 'VND'
+                              }).format(product.price) %>
+                            </p>
+                            <form
+                              method="post"
+                              action="/addProductToCart/<%=product.id%>"
                             >
-                            <p><%= product.shortDesc %></p>
-                            <div>
-                              <p class="text-dark fs-5 fw-bold mb-3">
-                                <%= new Intl.NumberFormat('vi-VN', { style:
-                                'currency' , currency: 'VND'
-                                }).format(product.price) %>
-                              </p>
-                              <form
-                                method="post"
-                                action="/addProductToCart/<%=product.id%>"
+                              <button
+                                class="btn border border-secondary rounded-pill px-3 text-primary"
+                                type="submit"
                               >
-                                <button
-                                  class="btn border border-secondary rounded-pill px-3 text-primary"
-                                  type="submit"
-                                >
-                                  <i
-                                    class="fa fa-shopping-bag me-2 text-primary"
-                                  ></i
-                                  >Add to cart
-                                </button>
-                              </form>
-                            </div>
+                                <i
+                                  class="fa fa-shopping-bag me-2 text-primary"
+                                ></i
+                                >Add to cart
+                              </button>
+                            </form>
                           </div>
                         </div>
                       </div>
-                      <% }); %>
                     </div>
-
-                    <!-- PAGINATION start  -->
-                    <% if (listProducts.length === 0) { %>
-                    <h6 style="margin-top: 40px; margin-left: 50px">
-                      Rất tiếc, không có sản phẩm nào phù hợp tiêu chí!
-                    </h6>
-                    <% } else { %>
-                    <div class="pagination d-flex justify-content-center mt-5">
-                      <li
-                        class="<%= page === 1 ? 'disabled page-item' : 'page-item' %>"
-                      >
-                        <a
-                          class="page-link"
-                          href="/products?page=<%= page - 1  %>"
-                          aria-label="Previous"
-                        >
-                          <span aria-hidden="true">&laquo;</span>
-                        </a>
-                      </li>
-                      <% for(var i=1; i <=totalPage; i++) {%>
-                      <li class="page-item">
-                        <a
-                          class="<%= page === i ? 'active page-link' : 'page-link' %>"
-                          href="/products?<%= query %>page=<%= i  %>"
-                        >
-                          <%= i %>
-                        </a>
-                      </li>
-                      <% } %>
-                      <li
-                        class="<%= page === totalPage ? 'disabled page-item' : 'page-item' %>"
-                      >
-                        <a
-                          class="page-link"
-                          href="/products?page=<%= page + 1  %>"
-                          aria-label="Next"
-                        >
-                          <span aria-hidden="true">&raquo;</span>
-                        </a>
-                      </li>
-                    </div>
-                    <% } %>
-
-                    <!-- PAGINATION end  -->
+                    <% }); %>
                   </div>
+
+                  <!-- PAGINATION start  -->
+                  <% if (listProducts.length === 0) { %>
+                  <h6 style="margin-top: 40px; margin-left: 50px">
+                    Rất tiếc, không có sản phẩm nào phù hợp tiêu chí!
+                  </h6>
+                  <% } else { %>
+                  <div class="pagination d-flex justify-content-center mt-5">
+                    <li
+                      class="<%= page === 1 ? 'disabled page-item' : 'page-item' %>"
+                    >
+                      <a
+                        class="page-link"
+                        href="/products?page=<%= page - 1  %>"
+                        aria-label="Previous"
+                      >
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <% for(var i=1; i <=totalPage; i++) {%>
+                    <li class="page-item">
+                      <a
+                        class="<%= page === i ? 'active page-link' : 'page-link' %>"
+                        href="/products?<%= query %>page=<%= i  %>"
+                      >
+                        <%= i %>
+                      </a>
+                    </li>
+                    <% } %>
+                    <li
+                      class="<%= page === totalPage ? 'disabled page-item' : 'page-item' %>"
+                    >
+                      <a
+                        class="page-link"
+                        href="/products?page=<%= page + 1  %>"
+                        aria-label="Next"
+                      >
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </div>
+                  <% } %>
+
+                  <!-- PAGINATION end  -->
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
