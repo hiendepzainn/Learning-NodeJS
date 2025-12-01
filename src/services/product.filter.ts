@@ -126,7 +126,12 @@ const buildQuery = (
     });
   }
 
-  query += `sort=${sort}&`;
+  //sort
+  if (sort === "undefined") {
+    query += `sort=none&`;
+  } else {
+    query += `sort=${sort}&`;
+  }
 
   return query;
 };
