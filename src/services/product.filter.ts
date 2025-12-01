@@ -1,6 +1,8 @@
 import { prisma } from "../config/client";
 
 const getProductsFilter = async (
+  page: number,
+  pageSize: number,
   factory: string,
   target: string,
   price: string,
@@ -78,9 +80,55 @@ const getProductsFilter = async (
   const products = await prisma.product.findMany({
     where,
     orderBy,
+    skip: (page - 1) * pageSize,
+    take: pageSize,
   });
 
-  return products;
+  const count = await prisma.product.count({
+    where,
+  });
+
+  return {
+    data: products,
+    count: count,
+  };
 };
 
-export { getProductsFilter };
+const buildQuery = (
+  factory: string,
+  target: string,
+  price: string,
+  sort: string
+) => {
+  let query: string = "";
+
+  //factory
+  if (factory !== "undefined") {
+    const listFactory = factory.split(",");
+    listFactory.forEach((item) => {
+      query += `factory=${item}&`;
+    });
+  }
+
+  //target
+  if (target !== "undefined") {
+    const listTarget = target.split(",");
+    listTarget.forEach((item) => {
+      query += `target=${item}&`;
+    });
+  }
+
+  //price
+  if (price !== "undefined") {
+    const listPrice = price.split(",");
+    listPrice.forEach((item) => {
+      query += `price=${item}&`;
+    });
+  }
+
+  query += `sort=${sort}&`;
+
+  return query;
+};
+
+export { getProductsFilter, buildQuery };

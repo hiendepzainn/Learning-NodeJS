@@ -10,7 +10,7 @@ import {
   updateSumOfCart,
   upsertCartDetail,
 } from "../../services/cart.service";
-import { getProductsFilter } from "../../services/product.filter";
+import { buildQuery, getProductsFilter } from "../../services/product.filter";
 
 const getProductPageClient = async (req: Request, res: Response) => {
   const id: number = Number(req.params.id);
@@ -75,38 +75,37 @@ const getProductsPage = async (req: Request, res: Response) => {
     currentPage = 1;
   }
 
-  // const products = await getProductsByPageClient(currentPage, 6);
-  const totalPage = await getTotalPageProductClient(6);
-
-  // return res.render("client/product/products.ejs", {
-  //   listProducts: products,
-  //   page: currentPage,
-  //   totalPage: totalPage,
-  // });
-
+  const pageSizeFilter = 2;
   const { factory, target, price, sort } = req.query;
 
-  console.log(String(req.query.factory));
-
   const products = await getProductsFilter(
+    currentPage,
+    pageSizeFilter,
     String(factory),
     String(target),
     String(price),
     String(sort)
   );
 
-  // res.status(200).json({
-  //   data: products,
-  // });
+  const totalPage = Math.ceil(products.count / pageSizeFilter);
+
+  //build query in HREF at PAGINATION
+  const query = buildQuery(
+    String(factory),
+    String(target),
+    String(price),
+    String(sort)
+  );
 
   return res.render("client/product/products.ejs", {
-    listProducts: products,
+    listProducts: products.data,
     page: currentPage,
     totalPage: totalPage,
     listFactory: factory ? factory : [],
     listTarget: target ? target : [],
     listPrice: price ? price : [],
     sort: sort ? sort : "none",
+    query: query,
   });
 };
 
