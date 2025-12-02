@@ -10,7 +10,11 @@ import {
   updateSumOfCart,
   upsertCartDetail,
 } from "../../services/cart.service";
-import { buildQuery, getProductsFilter } from "../../services/product.filter";
+import {
+  buildFullQuery,
+  buildQuery,
+  getProductsFilter,
+} from "../../services/product.filter";
 
 const getProductPageClient = async (req: Request, res: Response) => {
   const id: number = Number(req.params.id);
@@ -41,6 +45,42 @@ const postAddProductToCart = async (req: Request, res: Response) => {
   await upsertCartDetail(quantity, userID, productID);
 
   res.redirect("/");
+};
+
+const postAddToCartFilter = async (req: Request, res: Response) => {
+  const user = req.user as any;
+  if (!user) {
+    return res.redirect("/login");
+  }
+
+  const quantity = 1;
+  const userID = user.id;
+  const productID: number = Number(req.params.id);
+  const cart = await getCartFromUserID(userID);
+
+  //build QUERY
+  const { factory, target, price, sort, page } = req.query;
+  const query = buildFullQuery(
+    String(factory),
+    String(target),
+    String(price),
+    String(sort),
+    String(page)
+  );
+
+  console.log(query);
+
+  // CREATE
+  if (!cart) {
+    await createNewCart(quantity, userID, productID);
+    return res.redirect("/");
+  }
+
+  // // UPDATE
+  await updateSumOfCart(quantity, userID);
+  await upsertCartDetail(quantity, userID, productID);
+
+  res.redirect(`/products?${query}`);
 };
 
 const postAddProductWithQuantity = async (req: Request, res: Response) => {
@@ -114,4 +154,5 @@ export {
   postAddProductToCart,
   postAddProductWithQuantity,
   getProductsPage,
+  postAddToCartFilter,
 };

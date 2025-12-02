@@ -136,4 +136,54 @@ const buildQuery = (
   return query;
 };
 
-export { getProductsFilter, buildQuery };
+const buildFullQuery = (
+  factory: string,
+  target: string,
+  price: string,
+  sort: string,
+  page: string
+) => {
+  let query: string = "";
+
+  //factory
+  if (factory !== "undefined") {
+    const listFactory = factory.split(",");
+    listFactory.forEach((item) => {
+      query += `factory=${item}&`;
+    });
+  }
+
+  //target
+  if (target !== "undefined") {
+    const listTarget = target.split(",");
+    listTarget.forEach((item) => {
+      query += `target=${item}&`;
+    });
+  }
+
+  //price
+  if (price !== "undefined") {
+    const listPrice = price.split(",");
+    listPrice.forEach((item) => {
+      query += `price=${item}&`;
+    });
+  }
+
+  //sort
+  if (sort === "undefined") {
+    query += `sort=none&`;
+  } else {
+    query += `sort=${sort}&`;
+  }
+
+  //page
+  if (page === "undefined") {
+    query += `page=1`;
+  } else {
+    query += `page=${page}`;
+  }
+
+  return query;
+};
+
+export { getProductsFilter, buildQuery, buildFullQuery };

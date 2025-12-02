@@ -5,6 +5,7 @@ import {
   getProductsPage,
   postAddProductToCart,
   postAddProductWithQuantity,
+  postAddToCartFilter,
 } from "../controllers/client/product.controller";
 import {
   getLoginPage,
@@ -36,6 +37,7 @@ export const initRouters = (app: Express) => {
   // Product (client)
   app.post("/addProductToCart/:id", postAddProductToCart);
   app.post("/add-product-to-cart-with-quantity", postAddProductWithQuantity);
+  app.post("/addToCartFilter/:id", postAddToCartFilter);
 
   // Cart (client)
   app.get("/cart", getCartPage);
