@@ -100,16 +100,16 @@ const postAddProductWithQuantity = async (req: Request, res: Response) => {
 
   const cart = await getCartFromUserID(userID);
 
-  // CREATE
   if (!cart) {
+    // CREATE
     await createNewCart(+quantity, userID, +productID);
-    return res.redirect("/");
+  } else {
+    // UPDATE
+    await updateSumOfCart(+quantity, userID);
+    await upsertCartDetail(+quantity, userID, +productID);
   }
 
-  // UPDATE
-  await updateSumOfCart(+quantity, userID);
-  await upsertCartDetail(+quantity, userID, +productID);
-  res.redirect("/");
+  res.redirect(`product/${+productID}`);
 };
 
 const getProductsPage = async (req: Request, res: Response) => {
