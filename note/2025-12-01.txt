@@ -8,7 +8,7 @@
 -------------DONE---------- + Thêm slide show 1 item nữa
 + Fix UI button "tìm kiếm" ở trang Product Filter
 -------------DONE---------- + Fix lại ảnh của sản phẩm Sony ZV-E1
-+ Bấm vào icon USER ở header nếu chưa login thì chuyển đến trang login
+-------------DONE---------- + Bấm vào icon USER ở header nếu chưa login thì chuyển đến trang login
 
 + Ở trang Products Filter, khi ấn Add to cart thì reload lại đúng trang vừa rồi
 + Trang chi tiết sản phẩm tương tự
