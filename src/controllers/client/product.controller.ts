@@ -75,7 +75,7 @@ const getProductsPage = async (req: Request, res: Response) => {
     currentPage = 1;
   }
 
-  const pageSizeFilter = 2;
+  const pageSizeFilter = 6;
   const { factory, target, price, sort } = req.query;
 
   const products = await getProductsFilter(
