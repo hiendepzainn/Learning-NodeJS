@@ -3,12 +3,13 @@
 - NOTE bug cần fix:
 
 -------------DONE---------- + Tạo thêm nhiều data một chút (khoảng 20 camera nữa)
-+ Fix các item sản phẩm hiển thị đang cái dài cái ngắn (shortDetail cho ngắn lại, giới hạn ký tự)
+-------------DONE---------- + Fix các item sản phẩm hiển thị đang cái dài cái ngắn (shortDetail cho ngắn lại, giới hạn ký tự)
 -------------Thôi ko cần---------- + Thay hình background rau-củ-quả
 -------------DONE---------- + Thêm slide show 1 item nữa
 -------------DONE---------- + Fix UI button "tìm kiếm" ở trang Product Filter
 -------------DONE---------- + Fix lại ảnh của sản phẩm Sony ZV-E1
 -------------DONE---------- + Bấm vào icon USER ở header nếu chưa login thì chuyển đến trang login
+-------------DONE---------- + Fix UI Item ở trang Product Filter
 
 + Ở trang Products Filter, khi ấn Add to cart thì reload lại đúng trang vừa rồi
 + Trang chi tiết sản phẩm tương tự

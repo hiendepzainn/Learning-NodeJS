@@ -61,7 +61,7 @@
           <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
               <div class="row g-4">
-                <div class="col-4">
+                <div class="col-3">
                   <form action="/products" method="get">
                     <div style="margin-bottom: 30px">
                       <h6>Hãng sản xuất</h6>
@@ -210,11 +210,13 @@
                   </form>
                 </div>
 
-                <div class="col-8">
+                <div class="col-9 tab-class text-center">
                   <div class="row g-4">
                     <% listProducts.forEach(function(product) { %>
                     <div class="col-4">
-                      <div class="rounded position-relative fruite-item">
+                      <div
+                        class="rounded position-relative fruite-item border border-secondary"
+                      >
                         <div class="fruite-img">
                           <img
                             src="images/product/<%= product.image %>"
@@ -228,13 +230,20 @@
                         >
                           Còn hàng
                         </div>
-                        <div
-                          class="p-4 border border-secondary border-top-0 rounded-bottom"
-                        >
+                        <div class="p-4 rounded-bottom">
                           <a href="/product/<%= product.id %>"
                             ><h4><%= product.name %></h4></a
                           >
-                          <p><%= product.shortDesc %></p>
+                          <div
+                            style="
+                              height: 70px;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                            "
+                          >
+                            <p><%= product.shortDesc %></p>
+                          </div>
                           <div>
                             <p class="text-dark fs-5 fw-bold mb-3">
                               <%= new Intl.NumberFormat('vi-VN', { style:
