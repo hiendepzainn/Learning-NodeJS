@@ -34,17 +34,26 @@ const postAddProductToCart = async (req: Request, res: Response) => {
   const userID = user.id;
   const productID: number = Number(req.params.id);
   const cart = await getCartFromUserID(userID);
-  // CREATE
-  if (!cart) {
-    await createNewCart(quantity, userID, productID);
-    return res.redirect("/");
+
+  //get QUERY
+  const { page } = req.query;
+  let query;
+  if (page) {
+    query = `?page=${+page}`;
+  } else {
+    query = ``;
   }
 
-  // UPDATE
-  await updateSumOfCart(quantity, userID);
-  await upsertCartDetail(quantity, userID, productID);
+  if (!cart) {
+    // CREATE
+    await createNewCart(quantity, userID, productID);
+  } else {
+    // UPDATE
+    await updateSumOfCart(quantity, userID);
+    await upsertCartDetail(quantity, userID, productID);
+  }
 
-  res.redirect("/");
+  res.redirect(`/${query}`);
 };
 
 const postAddToCartFilter = async (req: Request, res: Response) => {
@@ -68,17 +77,14 @@ const postAddToCartFilter = async (req: Request, res: Response) => {
     String(page)
   );
 
-  console.log(query);
-
-  // CREATE
   if (!cart) {
+    // CREATE
     await createNewCart(quantity, userID, productID);
-    return res.redirect("/");
+  } else {
+    // UPDATE
+    await updateSumOfCart(quantity, userID);
+    await upsertCartDetail(quantity, userID, productID);
   }
-
-  // // UPDATE
-  await updateSumOfCart(quantity, userID);
-  await upsertCartDetail(quantity, userID, productID);
 
   res.redirect(`/products?${query}`);
 };
