@@ -27,6 +27,7 @@ import {
   getThankyouPage,
 } from "../controllers/client/cart.controller";
 import { getOrderHistoryPage } from "../controllers/admin/order.controller";
+import APIRouter from "./api";
 
 export const initRouters = (app: Express) => {
   // CLIENT
@@ -65,6 +66,9 @@ export const initRouters = (app: Express) => {
 
   // ADMIN - check access ADMIN page (handle 403 Forbidden page)
   app.use("/admin", checkAdmin, adminRouter);
+
+  // API Route
+  app.use("", APIRouter);
 
   //handle 404 Not Found page
   app.use(get404Page);

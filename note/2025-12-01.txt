@@ -11,6 +11,6 @@
 -------------DONE---------- + Bấm vào icon USER ở header nếu chưa login thì chuyển đến trang login
 -------------DONE---------- + Fix UI Item ở trang Product Filter
 
-+ Ở trang Products Filter, khi ấn Add to cart thì reload lại đúng trang vừa rồi
-+ Trang chi tiết sản phẩm tương tự
-+ Trang chủ cũng tương tự
+-------------DONE---------- + Ở trang Products Filter, khi ấn Add to cart thì reload lại đúng trang vừa rồi
+-------------DONE---------- + Trang chi tiết sản phẩm tương tự
+-------------DONE---------- + Trang chủ cũng tương tự
