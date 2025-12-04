@@ -1,7 +1,7 @@
 import { prisma } from "../../config/client";
 import { comparePassword } from "../user.service";
 import jwt from "jsonwebtoken";
-
+import "dotenv/config";
 const getAllUser = async () => {
   const users = await prisma.user.findMany();
   return users;
@@ -24,11 +24,11 @@ const getAccessToken = async (username: string, password: string) => {
   }
 
   const payload = {
-    id: 27,
-    name: "Dinh Xuan Hien",
-    role: "ADMIN",
+    id: user.id,
+    username: user.username,
+    roleID: user.roleID,
   };
-  const secret = "Step on no pets";
+  const secret = process.env.JWT_SECRET;
   const access_token = jwt.sign(payload, secret, {
     expiresIn: "1d",
   });
