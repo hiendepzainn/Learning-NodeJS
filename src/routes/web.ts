@@ -15,7 +15,7 @@ export const initRouters = (app: Express) => {
   app.use("/admin", checkAdmin, adminRouter);
 
   // API Route
-  app.use("", APIRouter);
+  app.use("/api", APIRouter);
 
   //handle 404 Not Found page
   app.use(get404Page);

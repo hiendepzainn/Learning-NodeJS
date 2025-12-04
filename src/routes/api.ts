@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { getAllUsersAPI } from "../controllers/api/api.controller";
+import { getAllUsersAPI, handleLogin } from "../controllers/api/api.controller";
 
 const APIRouter = Router();
 
 APIRouter.get("/users", getAllUsersAPI);
+APIRouter.post("/login", handleLogin);
 
 export default APIRouter;
