@@ -26,6 +26,11 @@ const getAccessToken = async (username: string, password: string) => {
   const payload = {
     id: user.id,
     username: user.username,
+    fullName: user.fullName,
+    address: user.address,
+    phone: user.phone,
+    accountType: user.accountType,
+    avatar: user.avatar,
     roleID: user.roleID,
   };
   const secret = process.env.JWT_SECRET;

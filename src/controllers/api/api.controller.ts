@@ -3,6 +3,7 @@ import { getAccessToken, getAllUser } from "../../services/api/api.service";
 
 const getAllUsersAPI = async (req: Request, res: Response) => {
   const users = await getAllUser();
+  console.log(req.user);
 
   res.status(200).json({
     data: users,
