@@ -1,0 +1,7 @@
+QUY TRÌNH JWT:
+
+1. Client login --> Server tạo 1 TOKEN từ thông tin cá nhân người dùng --> trả về cho Client
+2. Client request 1 nguồn tài nguyên nào đó (call API) --> Gửi request kèm TOKEN
+3. Server kiểm tra TOKEN
+	- Nếu ok thì gọi next() để tiếp tục truy cập tài nguyên
+	- Nếu không ok thì ném ra STATUS LỖI + LỖI 

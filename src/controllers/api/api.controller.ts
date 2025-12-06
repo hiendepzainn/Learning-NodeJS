@@ -28,4 +28,15 @@ const handleLogin = async (req: Request, res: Response) => {
   }
 };
 
-export { getAllUsersAPI, handleLogin };
+const getAccount = (req: Request, res: Response) => {
+  // DATA at REQ.USER exist already after Run jwt.middleware.ts
+  const user = req.user;
+
+  res.status(200).json({
+    data: {
+      user,
+    },
+  });
+};
+
+export { getAllUsersAPI, handleLogin, getAccount };
