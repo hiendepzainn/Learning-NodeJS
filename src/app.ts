@@ -13,8 +13,12 @@ const app = express();
 
 const PORT = process.env.PORT || 8888;
 
-//config cors
-app.use(cors());
+//config cors: only PORT in originList can call API
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+  })
+);
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
