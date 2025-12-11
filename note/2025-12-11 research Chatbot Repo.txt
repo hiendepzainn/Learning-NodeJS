@@ -1,0 +1,14 @@
+- Chạy thử 1 chương trình python cơ bản nhất (20p)
+
+- Nghiên cứu thử xem hướng này có đơn giản hơn là RAG không (5p)
+	+ Đơn giản hơn khá nhiều, nên thử cái này trước
+
+- Nghiên cứu: Chatbot ngoài hướng triển khai này và RAG thì còn những kiểu build chatbot nào nữa (từ dễ đến khó) (10p)
+	+ IF - ELSE --> ko nên vì ko trả lời dc tự do
+	+ Dùng mỗi LLM: call API LLM trực tiếp --> ko trả lời dc đúng theo dữ liệu riêng
+	+ Dùng REPO: Lấy câu hỏi và context tương ứng từ file Data, call API để chatGPT trả lời --> OK phết
+	+ RAG, RAG nâng cao, build model,...  --> Phức tạp, cần kiến thức ML, nghiên cứu sau
+
+- Đọc kỹ lại repo và nghiên cứu, hiểu đã (20p)
+- Kéo repo Chatbot về
+- 
