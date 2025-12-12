@@ -1,0 +1,5 @@
+- Tạo thử project mới, lấy code mới tương ứng với phiên bản thư viện mới --> chạy thử
+
+- Nếu ko chạy được thì chạy thử chương trình hello world xem thế nào
+
+- 
