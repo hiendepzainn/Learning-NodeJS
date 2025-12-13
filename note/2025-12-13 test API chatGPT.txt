@@ -1,0 +1,3 @@
+---------------OK------------ Nạp tiền vào chatGPT
+---------------OK----------- Thử chạy chương trình python: chatbot
+(nếu có vướng mắc hoặc lỗi gì thì chạy thử chương trình call API bình thường chatGPT trước)
