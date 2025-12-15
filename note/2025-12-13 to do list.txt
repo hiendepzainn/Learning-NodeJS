@@ -1,0 +1,14 @@
+---------------OK------------ Hỏi thầy Cường hôm nào bảo vệ KLTN đợt t12/2025 thì:
+	+ Có được lên xem không
+	+ Nếu được thì cứ vào ngồi hay đăng ký hay ntn?
+	+ Có danh sách vị trí phòng bảo vệ, thứ tự, đề tài bảo vệ không?
+
+- Xem xem phần check số token đã sử dụng ở đâu?
+
+- Đọc hiểu code để xem nguyên lý hoạt động thực sự của code Chatbot thế nào để chuẩn bị cho phần data cho ok nhất
+
+- Vẽ ra 1 lộ trình làm APP kết hợp chức năng Chatbot AI để chuẩn bị cho thời gian tới
+
+---------------OK----------- Hỏi xem chị Thảo tý có về không
+
+- Nghĩ quà để hôm tới đưa cô Nhung về Nha Trang

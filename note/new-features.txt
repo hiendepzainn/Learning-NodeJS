@@ -1,0 +1,6 @@
++ Chatbot hỗ trợ hỏi đáp về Camera dựa trên data về camera của shop
+
++ Tính năng so sánh thông số giữa 2 camera
+
++ Tính năng 3D view camera
+
