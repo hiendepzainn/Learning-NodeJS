@@ -1,0 +1,7 @@
+- Tìm hiểu về cách thức đưa 3D Viewer vào html
+
+- Chạy thử 1 model viewer vào html (đơn giản nhất)
+
+- Tìm xem có đủ model 3D không
+
+- Tìm cách thức lưu model để truy xuất thế nào đối với Database
