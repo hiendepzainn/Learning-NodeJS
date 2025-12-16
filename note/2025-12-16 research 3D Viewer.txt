@@ -1,7 +1,46 @@
+-------------------------------------------HƯỚNG LẤY MODEL 3D CÓ SẴN--------------------------------------------
 - Tìm hiểu về cách thức đưa 3D Viewer vào html
 
-- Chạy thử 1 model viewer vào html (đơn giản nhất)
+- Kiếm model Viewer:
++ https://sketchfab.com:
+	• Có mẫu có, có mẫu không
+	• Khá ok để demo
+	• Tính mở rộng nếu thêm model CAMERA mới ko OK
 
-- Tìm xem có đủ model 3D không
++ https://polyhaven.com/models:
+	• Không có
 
-- Tìm cách thức lưu model để truy xuất thế nào đối với Database
++ CGTrader:
+	• Có rất nhiều nhưng trả phí quá đắt
+	• Đồ free thì ko có mấy
+
++ TurboSquid: như trên
+
+-------> Tổng quan lại: nếu bết bát nhất thì làm theo cách này
+
+---------PENDING-------- Chạy thử 1 model viewer vào html (đơn giản nhất)
+
+---------PENDING-------- Tìm xem có đủ model 3D không
+
+---------PENDING-------- Tìm cách thức lưu model để truy xuất thế nào đối với Database
+
+
+---------------------------------------------HƯỚNG TẠO MODEL 3D BẰNG UPLOAD ẢNH LÊN----------------------------------------
+
+- Tạo model = tools/framework:
+	Multer (express) --> Meshroom (OpenMVG + OpenMVS)/COLMAP: Tạo model 3D
+
+- Tạo model = AI:
+	Node.js --> python script --> AI model --> 3D Viewer
+- Giả lập 3D:
+	+ Upload ảnh --> Map ảnh lên geometry đơn giản (cube, plane, sphere)
+		6 ảnh → 6 mặt cube
+		1 ảnh → texture sphere (360°)
+- Gọi API ngoài:
+	Upload ảnh → Gửi API → Nhận model → Embed viewer
+		+ Sketchfab API
+
+		+ Polycam
+
+		+ Luma AI (NeRF)
+	
