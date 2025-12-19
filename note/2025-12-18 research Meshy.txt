@@ -1,0 +1,9 @@
+- Kỹ thuật ghép từ các hình chụp các góc của 1 đồ vật thành 1 mô hình 3D được gọi là gì?
+(để research trên mạng)
+
+- Tôi muốn xem các project web có chức năng đó trên youtube thì có thể search là gì?
+
+- Có công cụ/framework nào hỗ trợ làm tính năng này không?
+(để tôi tích hợp vào webapp của tôi)
+
+------------------------------------------------
