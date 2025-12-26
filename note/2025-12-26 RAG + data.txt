@@ -1,0 +1,13 @@
+- Xem code python lấy data liên quan câu hỏi ntn, lấy bao nhiêu dòng
+
+Dữ liệu được gửi lên LLM:
+OK+ Câu hỏi của user
++ Thông tin truy vấn được từ tài liệu
+OK+ PROMPT bán hàng
+OK+ Lịch sử chát 3-5 cái gần nhất
+
+- Tìm hiểu cách thức triển khai data của hệ thống thành file txt (tài liệu) để chatbot đọc
+	+ Phải có cách generate từ database thành file tri thức txt chứ ko phải tạo thủ công nhỉ?
+	(vì thủ công thì sẽ khó bảo trì và update mỗi lần có thay đổi sản phẩm, thông tin nhỉ)
+	+ Và phải có cơ chế mỗi lần có thay đổi gì đó trong DB thì file tri thức sẽ được generate lại nhỉ?
+	(trong trường hợp admin page sửa thông tin về máy ảnh)

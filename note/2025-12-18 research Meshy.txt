@@ -7,3 +7,10 @@
 (để tôi tích hợp vào webapp của tôi)
 
 ------------------------------------------------
+
+KẾT QUẢ:
+
+- Xem demo gen mô hình 3D trên ứng dụng của họ khá ok
+
+- Có HDSD API để tạo 3D từ multi-image:
+https://docs.meshy.ai/en/api/image-to-3d#create-a-multi-image-to-3d-task
