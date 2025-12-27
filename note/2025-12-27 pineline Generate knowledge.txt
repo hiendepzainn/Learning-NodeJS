@@ -1,0 +1,21 @@
+- File tri thức được viết bằng txt hay excel thì ok hơn?
+- file tri thức được viết như thế nào để hiệu quả truy vấn của chatbot được cao nhất?
+- cách thức generate từ DB vào file tri thức thế nào?
+
+-------------------------------------------------------------------------------
+
+- PINELINE:
+Database
+   ↓
+Export → Excel (admin dùng)
+   ↓
+Convert script
+   ↓
+TXT / Markdown (knowledge base)
+   ↓
+Build vector index
+
+SELECT * FROM nodejspro.products into outfile "D:/chatbot/test.txt" fields terminated by ',' enclosed by '"' lines terminated by '\r\n'
+Error Code: 1290. The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
+Error Code: 1086. File 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/test.txt' already exists
+
