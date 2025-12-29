@@ -1,0 +1,51 @@
+Thay đổi thông tin sản phẩm --> DB products thay đổi ---> Re-generate file knowledge thế nào?
+
+--> Mỗi lần edit/thêm mới/xóa sản phẩm thì chạy thêm code node.js để xóa file cũ + render file mới
+
+
+----------------------------------------------------------------------
+• Phương pháp xử lý vấn đề ghi đè file Generate từ DB ra txt thế nào?
+"• If … else … (xóa file nếu tồn tại = node.js)
+• Render tên file động theo thời gian"		
+
+----------------------------------------------------------------------
+• Test thử chatbot với file knowledge được render lại có ngữ nghĩa
+(VD: Sản phẩm Canon EOS R1 có giá 136000000 đồng, dành cho người có trình độ professional và là máy của hãng canon)
+
+Hoạt động mức cơ bản khá ok		
+
+----------------------------------------------------------------------
+• Thử sửa folder destination export của Workbench để export vào thẳng folder data (tri thức) của phần back-end chatbot được không					
+
+"→
+• được nhưng ko nên vì phải cấu hình lại lằng nhằng và nguy hiểm bảo mật
+
+• cách An Toàn:
++ Cứ export vào chỗ cũ
++ Dùng code node.js để copy & paste sang chỗ mới"		
+
+----------------------------------------------------------------------
+• Tìm hiểu hướng tích hợp back-end chatbot (python) vào project node.js có sẵn
+"• Express làm trung gian:
+
++ Kiến trúc:
+Browser (EJS + JS)
+      ↓ HTTP
+Express (Node.js)
+      ↓ HTTP (API)
+Python Backend (Flask / FastAPI)
+
++ Cách hoạt động:
+1. User click / submit form ở EJS
+
+2. Express nhận request
+
+3. Express gọi Python backend qua HTTP
+
+4. Python xử lý → trả JSON
+
+5. Express render lại EJS hoặc trả JSON cho frontend"		
+		
+		
+
+----------------------------------------------------------------------
