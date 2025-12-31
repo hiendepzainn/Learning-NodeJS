@@ -25,6 +25,7 @@ import {
   postRegister,
 } from "../controllers/authentication.controller";
 import passport from "passport";
+import { getChatPage } from "../controllers/client/chat.controller";
 
 const clientRouter = Router();
 
@@ -49,6 +50,9 @@ clientRouter.post("/confirm-cart", postConfirmCart);
 clientRouter.post("/create-order", postCreateOrder);
 clientRouter.get("/thankyou", getThankyouPage);
 clientRouter.get("/order-history", getOrderHistoryPage);
+
+// Chatbot (client)
+clientRouter.get("/chat", getChatPage);
 
 // Authentication
 clientRouter.get("/login", checkLogin, getLoginPage);
