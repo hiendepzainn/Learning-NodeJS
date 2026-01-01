@@ -1,13 +1,27 @@
-const input = document.getElementById("input-chatbot");
-const button = document.getElementById("send-button");
-const frame = document.getElementById("chatbot-frame");
+const getCurrentTime = () => {
+  const time = new Date().toLocaleTimeString("vi-VN", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  return time;
+};
+
+const input = document.getElementById("chatInput");
+const button = document.getElementById("sendBtn");
+const frame = document.getElementById("chatMessages");
 
 const handleSendMessage = async () => {
   const message = input.value;
-  const messageElement = document.createElement("div");
-  messageElement.className = "text-end";
-  messageElement.innerText = message;
-  frame.appendChild(messageElement);
+  const messageElement = `
+    <div class="message">
+      <div class="text-user">
+      ${input.value}
+      </div>
+      <div class="time-user">${getCurrentTime()}</div>
+    </div>
+  `;
+  frame.innerHTML += messageElement;
   input.value = "";
 
   const result = await fetch("http://127.0.0.1:8000/chat", {
@@ -23,10 +37,16 @@ const handleSendMessage = async () => {
 
   const response = await result.json();
 
-  const responseElement = document.createElement("div");
-  responseElement.className = "text-start";
-  responseElement.innerText = response.answer;
-  frame.appendChild(responseElement);
+  const responseElement = `
+    <div class="message">
+      <div class="text-bot">
+      ${response.answer}
+      </div>
+      <div class="time-bot">${getCurrentTime()}</div>
+    </div>
+  `;
+
+  frame.innerHTML += responseElement;
 };
 
 button.addEventListener("click", async () => {

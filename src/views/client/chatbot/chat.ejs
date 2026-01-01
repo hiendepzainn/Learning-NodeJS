@@ -37,6 +37,9 @@
 
     <!-- Template Stylesheet -->
     <link href="client/css/style.css" rel="stylesheet" />
+
+    <!-- Chatbot CSS -->
+    <link href="client/css/chatbot.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -63,29 +66,30 @@
               <div class="row g-4 py-5">
                 <div
                   id="chatbot-frame"
-                  class="col-7"
+                  class="col-12"
                   style="background-color: antiquewhite"
                 >
-                  <div class="row">
-                    <div class="col-10">
-                      <input id="input-chatbot" class="w-100" type="text" />
-                    </div>
-                    <div class="col-2">
-                      <button id="send-button" type="button" class="w-100">
-                        Send
-                      </button>
-                    </div>
-                  </div>
+                  <div class="chatbot-container">
+                    <div class="chatbot-header">🤖 Trợ lý ảo</div>
 
-                  <div class="text-end">Hello</div>
-                  <div class="text-start">
-                    Xin chào, mình giúp gì được bạn nhỉ?
-                  </div>
-                  <div class="text-end">
-                    Tư vấn cho mình chiếc máy ảnh giá rẻ nhất của Nikon nhé?
-                  </div>
-                  <div class="text-start">
-                    Đó là chiếc Nikon D750 fullframe sản xuất từ 2012
+                    <div class="chatbot-messages" id="chatMessages">
+                      <!-- BOT  -->
+                      <div class="message">
+                        <div class="text-bot">
+                          Xin chào, tôi có thể giúp gì được cho bạn nào?
+                        </div>
+                        <div class="time-bot"><%= startTime %></div>
+                      </div>
+                    </div>
+
+                    <div class="chatbot-input">
+                      <input
+                        type="text"
+                        placeholder="Nhập tin nhắn..."
+                        id="chatInput"
+                      />
+                      <button id="sendBtn">Gửi</button>
+                    </div>
                   </div>
                 </div>
               </div>
