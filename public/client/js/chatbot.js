@@ -7,9 +7,18 @@ const getCurrentTime = () => {
   return time;
 };
 
+const getTypingIndicator = () => {
+  const element = document.createElement("div");
+  element.id = "bot-typing";
+  element.className = "typing";
+  element.innerHTML = "<span></span><span></span><span></span>";
+  return element;
+};
+
 const input = document.getElementById("chatInput");
 const button = document.getElementById("sendBtn");
 const frame = document.getElementById("chatMessages");
+const typingAnimation = getTypingIndicator();
 
 const handleSendMessage = async () => {
   const message = input.value;
@@ -22,6 +31,7 @@ const handleSendMessage = async () => {
     </div>
   `;
   frame.innerHTML += messageElement;
+  frame.appendChild(typingAnimation);
   input.value = "";
 
   const result = await fetch("http://127.0.0.1:8000/chat", {
@@ -45,6 +55,8 @@ const handleSendMessage = async () => {
       <div class="time-bot">${getCurrentTime()}</div>
     </div>
   `;
+
+  frame.lastElementChild.remove();
 
   frame.innerHTML += responseElement;
 };
