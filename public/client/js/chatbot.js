@@ -1,3 +1,5 @@
+import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
+
 const getCurrentTime = () => {
   const time = new Date().toLocaleTimeString("vi-VN", {
     hour: "2-digit",
@@ -21,6 +23,7 @@ const frame = document.getElementById("chatMessages");
 const typingAnimation = getTypingIndicator();
 
 const handleSendMessage = async () => {
+  // render USER message
   const message = input.value;
   const messageElement = `
     <div class="message">
@@ -31,9 +34,13 @@ const handleSendMessage = async () => {
     </div>
   `;
   frame.innerHTML += messageElement;
+
+  // render Typing animation
   frame.appendChild(typingAnimation);
+
   input.value = "";
 
+  // call API chatbot Back-end
   const result = await fetch("http://127.0.0.1:8000/chat", {
     method: "POST",
     headers: {
@@ -46,18 +53,22 @@ const handleSendMessage = async () => {
   });
 
   const response = await result.json();
+  const htmlResponse = marked.parse(response.answer);
 
+  // CREATE response Element
   const responseElement = `
     <div class="message">
       <div class="text-bot">
-      ${response.answer}
+      ${htmlResponse}
       </div>
       <div class="time-bot">${getCurrentTime()}</div>
     </div>
   `;
 
+  // remove Typing animation
   frame.lastElementChild.remove();
 
+  // render BOT message
   frame.innerHTML += responseElement;
 };
 
