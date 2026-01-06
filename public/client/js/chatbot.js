@@ -73,6 +73,8 @@ const typingAnimation = getTypingIndicator();
 
 // event SEND message
 const handleSendMessage = async () => {
+  button.disabled = true;
+
   // render USER message
   const message = input.value;
   const messageElement = `
@@ -123,6 +125,8 @@ const handleSendMessage = async () => {
   const output = document.getElementById(newID);
   const dom = htmlToDom(htmlResponse);
   typeNode(dom, output, 15);
+
+  button.disabled = false;
 };
 
 button.addEventListener("click", async () => {
@@ -131,6 +135,8 @@ button.addEventListener("click", async () => {
 
 input.addEventListener("keydown", async (e) => {
   if (e.key === "Enter") {
+    input.disabled = true;
     await handleSendMessage();
   }
+  input.disabled = false;
 });
