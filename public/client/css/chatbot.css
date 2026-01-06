@@ -48,6 +48,10 @@
   border-bottom-left-radius: 4px;
 }
 
+.message .text-bot p:last-child {
+  margin-bottom: 0px;
+}
+
 .message .text-user {
   background-color: #4f46e5;
   width: fit-content;
