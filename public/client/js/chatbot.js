@@ -1,5 +1,53 @@
 import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
 
+// convert HTML to DOM
+const htmlToDom = (html) => {
+  const template = document.createElement("template");
+  template.innerHTML = html;
+  return template.content;
+};
+
+// gradually display Text
+const typeNode = async (sourceNode, targetParent, speed) => {
+  for (const node of sourceNode.childNodes) {
+    // TEXT NODE
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent;
+      const textNode = document.createTextNode("");
+      targetParent.appendChild(textNode);
+
+      for (let i = 0; i < text.length; i++) {
+        textNode.textContent += text[i];
+        await sleep(speed);
+      }
+    }
+
+    // ELEMENT NODE
+    else if (node.nodeType === Node.ELEMENT_NODE) {
+      const el = node.cloneNode(false); // clone tag only
+      targetParent.appendChild(el);
+      await typeNode(node, el, speed);
+    }
+  }
+};
+
+// delay SPEED
+const sleep = (ms) => {
+  return new Promise((res) => setTimeout(res, ms));
+};
+
+// get randomString (length = 4)
+const getRandomString = () => {
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  for (let i = 0; i < 4; i++) {
+    const randomIndex = Math.floor(Math.random() * chars.length);
+    result += chars[randomIndex];
+  }
+  return result;
+};
+
 const getCurrentTime = () => {
   const time = new Date().toLocaleTimeString("vi-VN", {
     hour: "2-digit",
@@ -9,6 +57,7 @@ const getCurrentTime = () => {
   return time;
 };
 
+// icon Typing...
 const getTypingIndicator = () => {
   const element = document.createElement("div");
   element.id = "bot-typing";
@@ -22,6 +71,7 @@ const button = document.getElementById("sendBtn");
 const frame = document.getElementById("chatMessages");
 const typingAnimation = getTypingIndicator();
 
+// event SEND message
 const handleSendMessage = async () => {
   // render USER message
   const message = input.value;
@@ -56,11 +106,10 @@ const handleSendMessage = async () => {
   const htmlResponse = marked.parse(response.answer);
 
   // CREATE response Element
+  const newID = getRandomString();
   const responseElement = `
     <div class="message">
-      <div class="text-bot">
-      ${htmlResponse}
-      </div>
+      <div id="${newID}" class="text-bot"></div>
       <div class="time-bot">${getCurrentTime()}</div>
     </div>
   `;
@@ -70,6 +119,10 @@ const handleSendMessage = async () => {
 
   // render BOT message
   frame.innerHTML += responseElement;
+
+  const output = document.getElementById(newID);
+  const dom = htmlToDom(htmlResponse);
+  typeNode(dom, output, 15);
 };
 
 button.addEventListener("click", async () => {
