@@ -1,0 +1,28 @@
+<!-- Chatbot Wrapper -->
+<div id="chatbot-wrapper">
+  <!-- Floating Button -->
+  <div id="chatbot-toggle">💬</div>
+
+  <!-- Chatbot Box -->
+  <div id="chatbot-box" class="hidden">
+    <div class="chatbot-header">
+      <span>🤖 Trợ lý ảo</span>
+      <button id="chatbot-close">✕</button>
+    </div>
+
+    <div class="chatbot-messages" id="chatMessages">
+      <!-- BOT  -->
+      <div class="message">
+        <div class="text-bot">
+          <p>Xin chào, tôi có thể giúp gì được cho bạn nào?</p>
+        </div>
+        <div class="time-bot"><%= startTime %></div>
+      </div>
+    </div>
+
+    <div class="chatbot-input">
+      <input type="text" placeholder="Nhập tin nhắn..." id="chatInput" />
+      <button id="sendBtn">Gửi</button>
+    </div>
+  </div>
+</div>

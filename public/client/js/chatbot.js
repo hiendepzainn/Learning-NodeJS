@@ -66,6 +66,19 @@ const getTypingIndicator = () => {
   return element;
 };
 
+// Script frame toggle CHATBOT
+const toggleBtn = document.getElementById("chatbot-toggle");
+const chatbotBox = document.getElementById("chatbot-box");
+const closeBtn = document.getElementById("chatbot-close");
+
+toggleBtn.addEventListener("click", () => {
+  chatbotBox.classList.toggle("hidden");
+});
+
+closeBtn.addEventListener("click", () => {
+  chatbotBox.classList.add("hidden");
+});
+
 const input = document.getElementById("chatInput");
 const button = document.getElementById("sendBtn");
 const frame = document.getElementById("chatMessages");

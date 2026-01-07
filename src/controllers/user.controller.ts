@@ -11,6 +11,7 @@ import {
   getProductsByPageClient,
   getTotalPageProductClient,
 } from "../services/product.service";
+import { getCurrentTime } from "../services/chat.service";
 
 const getHomePage = async (req: Request, res: Response) => {
   const { page } = req.query;
@@ -25,10 +26,13 @@ const getHomePage = async (req: Request, res: Response) => {
   const totalPage = await getTotalPageProductClient(8);
 
   console.log(">>> Current user: ", req.user);
+
+  const startTime = getCurrentTime();
   return res.render("client/home/show.ejs", {
     listProducts: products,
     page: currentPage,
     totalPage: totalPage,
+    startTime: startTime,
   });
 };
 
