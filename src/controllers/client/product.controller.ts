@@ -15,6 +15,7 @@ import {
   buildQuery,
   getProductsFilter,
 } from "../../services/product.filter";
+import { getCurrentTime } from "../../services/chat.service";
 
 const getProductPageClient = async (req: Request, res: Response) => {
   const id: number = Number(req.params.id);
@@ -143,6 +144,8 @@ const getProductsPage = async (req: Request, res: Response) => {
     String(sort)
   );
 
+  const startTime = getCurrentTime();
+
   return res.render("client/product/products.ejs", {
     listProducts: products.data,
     page: currentPage,
@@ -152,6 +155,7 @@ const getProductsPage = async (req: Request, res: Response) => {
     listPrice: price ? price : [],
     sort: sort ? sort : "none",
     query: query,
+    startTime: startTime,
   });
 };
 
