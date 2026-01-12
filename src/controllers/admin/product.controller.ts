@@ -6,6 +6,7 @@ import {
   handleDeleteProduct,
   handleUpdateProduct,
 } from "../../services/product.service";
+import { regenerate } from "../../services/regenerate.service";
 
 const getCreateProductPage = async (req: Request, res: Response) => {
   return res.render("admin/product/create.ejs", {
@@ -56,6 +57,8 @@ const postCreateProduct = async (req: Request, res: Response) => {
       image
     );
 
+    regenerate();
+
     return res.redirect("/admin/product");
   } else {
     return res.render("admin/product/create.ejs", {
@@ -68,6 +71,9 @@ const postCreateProduct = async (req: Request, res: Response) => {
 const postDeleteProduct = async (req: Request, res: Response) => {
   const id: number = Number(req.params.id);
   await handleDeleteProduct(id);
+
+  regenerate();
+
   return res.redirect("/admin/product");
 };
 
@@ -102,6 +108,8 @@ const postUpdateProduct = async (req: Request, res: Response) => {
     target,
     image
   );
+
+  await regenerate();
 
   return res.redirect("/admin/product");
 };
