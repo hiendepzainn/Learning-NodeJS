@@ -26,6 +26,7 @@ import {
 } from "../controllers/authentication.controller";
 import passport from "passport";
 import { getChatPage } from "../controllers/client/chat.controller";
+import { getViewProduct } from "../controllers/client/view.controller";
 
 const clientRouter = Router();
 
@@ -53,6 +54,9 @@ clientRouter.get("/order-history", getOrderHistoryPage);
 
 // Chatbot (client)
 clientRouter.get("/chat", getChatPage);
+
+// 3D viewer
+clientRouter.get("/viewProduct", getViewProduct);
 
 // Authentication
 clientRouter.get("/login", checkLogin, getLoginPage);

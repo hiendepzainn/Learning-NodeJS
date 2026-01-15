@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>3D Model Viewer</title>
+
+    <!-- Import model-viewer -->
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+
+    <style>
+      body {
+        margin: 0;
+        background: #ffffff;
+        color: white;
+        font-family: sans-serif;
+      }
+
+      model-viewer {
+        border: 2px solid #ddd;
+        width: 50vw;
+        height: 50vh;
+      }
+    </style>
+  </head>
+  <body>
+    <model-viewer
+      src="/images/model/daugio.glb"
+      alt="My 3D Model"
+      camera-controls
+      zoom
+      auto-rotate
+      shadow-intensity="1"
+      exposure="1"
+      environment-image="neutral"
+    >
+    </model-viewer>
+  </body>
+</html>
