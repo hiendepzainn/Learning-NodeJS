@@ -1,0 +1,95 @@
+fileUploadMiddleware.ts:
+
+import multer from "multer";
+import path from "path";
+import { v4 as uuidv4 } from "uuid";
+import type { Request } from "express";
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    if (file.fieldname === "image") {
+      cb(null, "public/images");
+    } else if (file.fieldname === "model") {
+      cb(null, "public/models");
+    } else {
+      cb(new Error("Invalid field name"), "");
+    }
+  },
+
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, uuidv4() + ext);
+  },
+});
+
+const fileFilter = (
+  req: Request,
+  file: Express.Multer.File,
+  cb: multer.FileFilterCallback
+) => {
+  // upload ảnh
+  if (file.fieldname === "image") {
+    if (
+      file.mimetype === "image/png" ||
+      file.mimetype === "image/jpg" ||
+      file.mimetype === "image/jpeg"
+    ) {
+      return cb(null, true);
+    }
+    return cb(new Error("Image must be JPG or PNG"));
+  }
+
+  // upload model 3D
+  if (file.fieldname === "model") {
+    if (path.extname(file.originalname) === ".glb") {
+      return cb(null, true);
+    }
+    return cb(new Error("Model must be .glb"));
+  }
+
+  cb(new Error("Unknown upload field"));
+};
+
+const uploadProductFiles = multer({
+  storage,
+  fileFilter,
+  limits: {
+    fileSize: 50 * 1024 * 1024, // 50MB cho glb
+  },
+}).fields([
+  { name: "image", maxCount: 1 },
+  { name: "model", maxCount: 1 },
+]);
+
+export default uploadProductFiles;
+
+
+---------------------------------------------------
+
+Cách dùng trong route:
+
+router.post("/products", uploadProductFiles, async (req, res) => {
+  const files = req.files as {
+    image?: Express.Multer.File[];
+    model?: Express.Multer.File[];
+  };
+
+  const imageFile = files.image?.[0].filename;
+  const modelFile = files.model?.[0].filename;
+
+  await Product.create({
+    image: imageFile,
+    model: modelFile,
+  });
+
+  res.redirect("/products");
+});
+
+-------------------------------------------------
+EJS form (để đối chiếu):
+
+<form method="POST" enctype="multipart/form-data">
+  <input type="file" name="image" accept="image/*" required />
+  <input type="file" name="model" accept=".glb" required />
+  <button type="submit">Submit</button>
+</form>

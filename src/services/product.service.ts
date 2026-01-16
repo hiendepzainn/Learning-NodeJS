@@ -14,7 +14,8 @@ const handleCreateProduct = async (
   quantity: number,
   factory: string,
   target: string,
-  image: string
+  image: string,
+  model: string
 ) => {
   await prisma.product.create({
     data: {
@@ -26,6 +27,7 @@ const handleCreateProduct = async (
       image: image,
       quantity: quantity,
       target: target,
+      model: model,
     },
   });
 };

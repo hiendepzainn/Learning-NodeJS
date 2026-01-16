@@ -43,8 +43,14 @@ const postCreateProduct = async (req: Request, res: Response) => {
     console.log(result);
     const { name, price, detailDesc, shortDesc, quantity, factory, target } =
       result.data;
-    const file = req.file;
-    const image = file ? file.filename : "";
+    const files = req.files as {
+      image?: Express.Multer.File[];
+      model?: Express.Multer.File[];
+    };
+
+    console.log("files:", files);
+    const image = files?.image?.[0]?.filename ?? null;
+    const model = files?.model?.[0]?.filename ?? null;
 
     await handleCreateProduct(
       name,
@@ -54,7 +60,8 @@ const postCreateProduct = async (req: Request, res: Response) => {
       quantity,
       factory,
       target,
-      image
+      image,
+      model
     );
 
     regenerate();

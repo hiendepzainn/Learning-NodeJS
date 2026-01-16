@@ -21,6 +21,7 @@ import {
   postUpdateProduct,
 } from "../controllers/admin/product.controller";
 import { getViewOrder } from "../controllers/admin/order.controller";
+import uploadsMiddleware from "../middleware/multer2";
 
 const adminRouter = Router();
 // ADMIN
@@ -45,11 +46,7 @@ adminRouter.post(
 // PRODUCT module
 adminRouter.get("/product", getProductPage);
 adminRouter.get("/create-product", getCreateProductPage);
-adminRouter.post(
-  "/create-product",
-  fileUploadMiddleware("image", "images/product"),
-  postCreateProduct
-);
+adminRouter.post("/create-product", uploadsMiddleware(), postCreateProduct);
 adminRouter.post("/delete-product/:id", postDeleteProduct);
 adminRouter.get("/view-product/:id", getViewProduct);
 adminRouter.post(
