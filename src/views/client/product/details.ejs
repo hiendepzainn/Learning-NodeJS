@@ -3,6 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <title><%= product.name %> - CameraShop</title>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -37,6 +41,7 @@
 
     <!-- Template Stylesheet -->
     <link href="/client/css/style.css" rel="stylesheet" />
+    <link href="/client/css/3D.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -108,7 +113,7 @@
         </div>
 
         <div class="row g-4 mb-5">
-          <div class="col-lg-8 col-xl-9">
+          <div class="col-7">
             <div class="row g-4">
               <div class="col-lg-6">
                 <div class="border rounded">
@@ -204,54 +209,21 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-xl-3">
-            <div class="row g-4 fruite">
-              <div class="col-lg-12">
-                <div class="mb-4">
-                  <h4>Categories</h4>
-                  <ul class="list-unstyled fruite-categorie">
-                    <li>
-                      <div class="d-flex justify-content-between fruite-name">
-                        <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Apples</a
-                        >
-                        <span>(3)</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="d-flex justify-content-between fruite-name">
-                        <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Oranges</a
-                        >
-                        <span>(5)</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="d-flex justify-content-between fruite-name">
-                        <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Strawbery</a
-                        >
-                        <span>(2)</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="d-flex justify-content-between fruite-name">
-                        <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Banana</a
-                        >
-                        <span>(8)</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="d-flex justify-content-between fruite-name">
-                        <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Pumpkin</a
-                        >
-                        <span>(5)</span>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+          <div class="col-5">
+            <!-- <h4>3D Viewer</h4> -->
+            <div>
+              <div class="model-viewer-wrapper">
+                <model-viewer
+                  src="/images/model/<%= product.model %>"
+                  alt="My 3D Model"
+                  camera-controls
+                  zoom
+                  auto-rotate
+                  shadow-intensity="1"
+                  exposure="1"
+                  environment-image="neutral"
+                >
+                </model-viewer>
               </div>
             </div>
           </div>
