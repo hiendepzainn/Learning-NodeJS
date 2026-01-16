@@ -49,11 +49,7 @@ adminRouter.get("/create-product", getCreateProductPage);
 adminRouter.post("/create-product", uploadsMiddleware(), postCreateProduct);
 adminRouter.post("/delete-product/:id", postDeleteProduct);
 adminRouter.get("/view-product/:id", getViewProduct);
-adminRouter.post(
-  "/update-product/:id",
-  fileUploadMiddleware("image", "images/product"),
-  postUpdateProduct
-);
+adminRouter.post("/update-product/:id", uploadsMiddleware(), postUpdateProduct);
 
 // ORDER module
 adminRouter.get("/order", getOrderPage);

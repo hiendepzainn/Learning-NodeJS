@@ -58,7 +58,8 @@ const handleUpdateProduct = async (
   quantity: number,
   factory: string,
   target: string,
-  image: string
+  image: string,
+  model: string
 ) => {
   await prisma.product.update({
     where: {
@@ -74,6 +75,7 @@ const handleUpdateProduct = async (
       target: target,
       image: image,
       sold: 0,
+      model: model,
     },
   });
 };

@@ -97,11 +97,21 @@ const postUpdateProduct = async (req: Request, res: Response) => {
   const { name, price, detailDesc, shortDesc, quantity, factory, target } =
     req.body as TProductSchema;
 
-  let image = req.file ? req.file.filename : "";
+  const files = req.files as {
+    image?: Express.Multer.File[];
+    model?: Express.Multer.File[];
+  };
+
+  let image = files?.image?.[0]?.filename ?? null;
+  let model = files?.model?.[0]?.filename ?? null;
+  const product = await getProductByID(id);
 
   if (!image) {
-    const product = await getProductByID(id);
     image = product.image;
+  }
+
+  if (!model) {
+    model = product.model;
   }
 
   await handleUpdateProduct(
@@ -113,7 +123,8 @@ const postUpdateProduct = async (req: Request, res: Response) => {
     Number(quantity),
     factory,
     target,
-    image
+    image,
+    model
   );
 
   await regenerate();
