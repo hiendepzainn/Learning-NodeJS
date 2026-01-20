@@ -10,6 +10,10 @@
     <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
     <meta name="author" content="Hỏi Dân IT" />
     <title>User Management</title>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
       rel="stylesheet"
@@ -27,6 +31,15 @@
           const imgURL = URL.createObjectURL(e.target.files[0]);
           $("#imagePreview").attr("src", imgURL);
           $("#imagePreview").css({ display: "block" });
+        });
+      });
+
+      $(document).ready(() => {
+        const modelInput = $("#modelInput");
+        modelInput.change(function (e) {
+          const modelURL = URL.createObjectURL(e.target.files[0]);
+          $("#modelPreview").attr("src", modelURL);
+          $("#modelPreview").css({ display: "block" });
         });
       });
     </script>
@@ -135,6 +148,18 @@
                 id="modelInput"
                 accept=".glb"
               />
+              <model-viewer
+                id="modelPreview"
+                style="margin-top: 10px; width: 100%; height: 300px; display: none; border: 2px solid #ddd;"
+                alt="model preview"
+                camera-controls
+                zoom
+                auto-rotate
+                shadow-intensity="1"
+                exposure="1"
+                environment-image="neutral"
+              >
+              </model-viewer>
               
             </div>
 

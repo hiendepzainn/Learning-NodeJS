@@ -155,7 +155,7 @@
               <% if (product.model) { %>
                 <model-viewer
                   id="modelPreview"
-                  style="margin-top: 10px; width: 100%; display: block; border: 2px solid #ddd;"
+                  style="margin-top: 10px; width: 100%; height: 300px; display: block; border: 2px solid #ddd;"
                   src="/images/model/<%= product.model %>"
                   alt="model preview"
                   camera-controls
@@ -169,7 +169,7 @@
                 <% } else { %>
                   <model-viewer
                     id="modelPreview"
-                    style="margin-top: 10px; width: 100%; display: none; border: 2px solid #ddd;"
+                    style="margin-top: 10px; width: 100%; height: 300px; display: none; border: 2px solid #ddd;"
                     alt="model preview"
                     camera-controls
                     zoom
