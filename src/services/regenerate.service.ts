@@ -41,15 +41,16 @@ const exportKnowledge = async () => {
     await myConnection.query(
       `SELECT 
         CONCAT(
-            'Sản phẩm ', name,
-            ' có giá ', price,
+            name,
+            ' có id là ', id,
+            ', có giá ', price,
             ' đồng, dành cho người có trình độ ', target,
             ' và là máy của hãng ', factory
         )
         FROM nodejspro.products
         INTO OUTFILE "D:/chatbot/test-api-chatbot/data/knowledge.txt"
         FIELDS TERMINATED BY ''
-        LINES TERMINATED BY '\r\n';`
+        LINES TERMINATED BY '\r\n';`,
     );
     console.log("Export ok");
   } catch (error) {

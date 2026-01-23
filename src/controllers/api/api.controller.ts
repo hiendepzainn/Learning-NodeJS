@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import { getAccessToken, getAllUser } from "../../services/api/api.service";
+import {
+  getAccessToken,
+  getAllUser,
+  getProductByID,
+} from "../../services/api/api.service";
 
 const getAllUsersAPI = async (req: Request, res: Response) => {
   const users = await getAllUser();
@@ -39,4 +43,21 @@ const getAccount = (req: Request, res: Response) => {
   });
 };
 
-export { getAllUsersAPI, handleLogin, getAccount };
+const getProductsByListID = async (req: Request, res: Response) => {
+  const { listID } = req.body;
+  console.log(listID);
+  const listProduct = [];
+
+  for (const id of listID) {
+    const product = await getProductByID(id);
+    listProduct.push(product);
+  }
+
+  res.status(200).json({
+    data: {
+      listProduct,
+    },
+  });
+};
+
+export { getAllUsersAPI, handleLogin, getAccount, getProductsByListID };

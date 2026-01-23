@@ -1,5 +1,89 @@
 import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
 
+// append PRODUCT CARD when chatbot SUGGEST
+const appendProductSuggestion = (list) => {
+  const newSuggestion = document.createElement("div");
+  newSuggestion.className = "product-suggestion";
+  const newID = getRandomString();
+  newSuggestion.innerHTML += `
+        <h4>Gợi ý sản phẩm phù hợp</h4>
+
+        <div id="${newID}" class="product-list">
+        </div>
+  `;
+  frame.appendChild(newSuggestion);
+
+  const productListElement = document.getElementById(newID);
+  list.forEach((item) => {
+    const productHTML = `
+          <div class="product-card">
+            <img
+              src="/images/product/${item.image}"
+              alt="${item.name}"
+            />
+            <h5>${item.name}</h5>
+            <p>${item.factory} · ${item.target}</p>
+            <p><strong>${new Intl.NumberFormat("vi-VN", {
+              style: "currency",
+              currency: "VND",
+            }).format(item.price)}</strong></p>
+            <a href="/product/${item.id}">Xem chi tiết</a>
+          </div>
+    `;
+    productListElement.innerHTML += productHTML;
+  });
+};
+
+// call API to query PRODUCTs by IDs
+const getProductsByIDs = async (listID) => {
+  try {
+    const response = await fetch(
+      "http://localhost:8000/api/getProductsByListID",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          listID,
+        }),
+      },
+    );
+    if (!response.ok) {
+      throw new Error("Fetch products failed");
+    }
+
+    const result = await response.json();
+    return result.data.listProduct;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
+};
+
+// process CHATBOT's ANSWER to 2 part: cleanAnswer & productIds
+const processedAIResponse = (rawAnswer) => {
+  const regex = /<SUGGESTION_IDS>([\s\S]*?)<\/SUGGESTION_IDS>/;
+  const match = rawAnswer.match(regex);
+
+  let productIds = [];
+  let cleanAnswer = rawAnswer;
+
+  if (match) {
+    cleanAnswer = rawAnswer.replace(regex, "").trim();
+
+    productIds = match[1]
+      .trim()
+      .split("\n")
+      .map((id) => Number(id))
+      .filter(Boolean);
+  }
+  return {
+    cleanAnswer,
+    productIds,
+  };
+};
+
 // convert HTML to DOM
 const htmlToDom = (html) => {
   const template = document.createElement("template");
@@ -118,7 +202,10 @@ const handleSendMessage = async () => {
   });
 
   const response = await result.json();
-  const htmlResponse = marked.parse(response.answer);
+  const rawAnswer = response.answer;
+  const processedAnswer = processedAIResponse(rawAnswer);
+
+  const htmlResponse = marked.parse(processedAnswer.cleanAnswer);
 
   // CREATE response Element
   const newID = getRandomString();
@@ -137,7 +224,13 @@ const handleSendMessage = async () => {
 
   const output = document.getElementById(newID);
   const dom = htmlToDom(htmlResponse);
-  typeNode(dom, output, 15);
+  await typeNode(dom, output, 15);
+
+  // chatbot SUGGEST --> append PRODUCT CARD
+  if (processedAnswer.productIds.length > 0) {
+    const listProduct = await getProductsByIDs(processedAnswer.productIds);
+    appendProductSuggestion(listProduct);
+  }
 
   button.disabled = false;
 };

@@ -7,6 +7,15 @@ const getAllUser = async () => {
   return users;
 };
 
+const getProductByID = async (id) => {
+  const product = await prisma.product.findUnique({
+    where: {
+      id: id,
+    },
+  });
+  return product;
+};
+
 const getAccessToken = async (username: string, password: string) => {
   const user = await prisma.user.findUnique({
     where: {
@@ -41,4 +50,4 @@ const getAccessToken = async (username: string, password: string) => {
   return access_token;
 };
 
-export { getAllUser, getAccessToken };
+export { getAllUser, getAccessToken, getProductByID };
