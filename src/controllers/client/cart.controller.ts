@@ -11,6 +11,7 @@ import {
   updateCartDetail,
   updateQuantityCart,
 } from "../../services/cart.service";
+import { createURL } from "../../services/payment.service";
 
 const getCartPage = async (req: Request, res: Response) => {
   const user = req.user as any;
@@ -106,23 +107,19 @@ const postCreateOrder = async (req: Request, res: Response) => {
   const { receiverName, receiverAddress, receiverPhone, total } = req.body;
   const user = req.user as any;
   const userID = user.id;
-  console.log(req.body);
 
   // Tạo Order - OrderDetail
-  await createOrderAndOrderDetail(
+  const orderID = await createOrderAndOrderDetail(
     receiverName,
     receiverAddress,
     receiverPhone,
     +total,
-    userID
+    userID,
   );
 
-  // Xóa CartDetail - Cart
-  const cart = await getCartFromUserID(userID);
-  const cartID = cart.id;
-  await deleteCartDetailAndCart(cartID);
+  const url = createURL(orderID);
 
-  res.redirect("/thankyou");
+  res.redirect(url);
 };
 
 const getThankyouPage = async (req: Request, res: Response) => {

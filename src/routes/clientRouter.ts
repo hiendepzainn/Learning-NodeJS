@@ -27,6 +27,7 @@ import {
 import passport from "passport";
 import { getChatPage } from "../controllers/client/chat.controller";
 import { getViewProduct } from "../controllers/client/view.controller";
+import { getResultPayment } from "../controllers/client/payment.controller";
 
 const clientRouter = Router();
 
@@ -39,7 +40,7 @@ clientRouter.get("/products", getProductsPage);
 clientRouter.post("/addProductToCart/:id", postAddProductToCart);
 clientRouter.post(
   "/add-product-to-cart-with-quantity",
-  postAddProductWithQuantity
+  postAddProductWithQuantity,
 );
 clientRouter.post("/addToCartFilter/:id", postAddToCartFilter);
 
@@ -58,6 +59,9 @@ clientRouter.get("/chat", getChatPage);
 // 3D viewer
 clientRouter.get("/viewProduct", getViewProduct);
 
+// ONLINE PAYMENT
+clientRouter.get("/vnpay-return", getResultPayment);
+
 // Authentication
 clientRouter.get("/login", checkLogin, getLoginPage);
 clientRouter.post(
@@ -66,7 +70,7 @@ clientRouter.post(
     successRedirect: "/successLoginPage",
     failureRedirect: "/login",
     failureMessage: true,
-  })
+  }),
 );
 clientRouter.get("/register", checkLogin, getRegisterPage);
 clientRouter.post("/register", postRegister);

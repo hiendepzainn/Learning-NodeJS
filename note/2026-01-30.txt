@@ -1,0 +1,24 @@
+Điền thông tin:
+- Thanh toán thành công:
+	+ Xóa cart
+	+ Thêm order
+	+ Đưa ra thông báo thành công
+- Thanh toán thất bại:
+	+ Đưa ra thông báo kèm message
+
+
+-----------------------------------------------------
+ok 1. Điền thông tin
+ok 2. Ấn nút "thanh toán"
+ok 3.
+ok - không xóa cart
+ok - Tạo order với paymentStatus = unpaid
+ok - Tạo link vnpay với ref = orderID
+ok 4. Thanh toán
+5.
+- Thành công: 
+	+ Xóa cart
+	+ Lấy ref để query DB --> đổi unpaid sang paid
+	+ Thông báo thành công
+- Thất bại: 
+	+ Thông báo thất bại

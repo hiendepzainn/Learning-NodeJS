@@ -184,7 +184,7 @@ const createOrderAndOrderDetail = async (
   receiverAddress: string,
   receiverPhone: string,
   total: number,
-  userID: number
+  userID: number,
 ) => {
   const cart = await getCartFromUserID(userID);
   const cartID = cart.id;
@@ -195,10 +195,10 @@ const createOrderAndOrderDetail = async (
     productID,
   }));
 
-  await prisma.order.create({
+  const order = await prisma.order.create({
     data: {
       totalPrice: total,
-      paymentMethod: "COD",
+      paymentMethod: "ONLINE_PAYMENT",
       paymentStatus: "PAYMENT_UNPAID",
       status: "PENDING",
       receiverAddress,
@@ -210,6 +210,8 @@ const createOrderAndOrderDetail = async (
       },
     },
   });
+
+  return order.id;
 };
 
 const deleteCartDetailAndCart = async (cartID) => {
