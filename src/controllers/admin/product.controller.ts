@@ -61,10 +61,10 @@ const postCreateProduct = async (req: Request, res: Response) => {
       factory,
       target,
       image,
-      model
+      model,
     );
 
-    regenerate();
+    await regenerate();
 
     return res.redirect("/admin/product");
   } else {
@@ -79,7 +79,7 @@ const postDeleteProduct = async (req: Request, res: Response) => {
   const id: number = Number(req.params.id);
   await handleDeleteProduct(id);
 
-  regenerate();
+  await regenerate();
 
   return res.redirect("/admin/product");
 };
@@ -124,7 +124,7 @@ const postUpdateProduct = async (req: Request, res: Response) => {
     factory,
     target,
     image,
-    model
+    model,
   );
 
   await regenerate();
