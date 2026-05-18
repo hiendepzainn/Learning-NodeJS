@@ -37,18 +37,18 @@ const appendProductSuggestion = (list) => {
 // call API to query PRODUCTs by IDs
 const getProductsByIDs = async (listID) => {
   try {
-    const response = await fetch(
-      "http://localhost:8000/api/getProductsByListID",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          listID,
-        }),
+    const port = window.location.port;
+    const apiURL =
+      "http://localhost:" + String(port) + "/api/getProductsByListID";
+    const response = await fetch(apiURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({
+        listID,
+      }),
+    });
     if (!response.ok) {
       throw new Error("Fetch products failed");
     }
